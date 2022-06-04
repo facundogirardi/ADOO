@@ -19,7 +19,7 @@ public class Operador {
 		this.contraseña = contraseña;
 	}
 
-// Getters y Setters
+	// Getters y Setters
 
 	public String getNombre() {
 		return nombre;
@@ -67,15 +67,5 @@ public class Operador {
 
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
-	}
-
-// Metodos de negocio
-
-	public boolean sosElOperador(String usuarioBuscado) {
-		if (usuario.equalsIgnoreCase(usuarioBuscado)) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 }
