@@ -1,5 +1,8 @@
 package modelo;
+import java.time.LocalDate;
 
+import adapters.AdapterSaldoCuenta;
+import adapters.IAdapterSaldo;
 import strategies.IEstrategiaEnvio;
 
 public class Consorcio {
@@ -58,6 +61,12 @@ public class Consorcio {
     public void cambioEstrategiaEnvio(IEstrategiaEnvio nuevaEstrategia) {
         System.out.println("Cambiando de estrategia de envío");
         this.estrategiaEnvio = nuevaEstrategia;
+        System.out.println("");
+    }
+
+    public void obtenerSaldo(String cbu, String token, LocalDate fechaConsulta) {
+		IAdapterSaldo adapterLogin = new AdapterSaldoCuenta();
+		adapterLogin.obtenerSaldo(cbu, token, fechaConsulta);
     }
 
 }

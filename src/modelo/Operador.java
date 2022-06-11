@@ -75,5 +75,6 @@ public class Operador {
 		IAdapterLogin adapterLogin = new AdapterLogin();
 		adapterLogin.login(usuario, contraseña);
 		System.out.printf("El usuario %s ha sido logueado", usuario);
+		System.out.println("");
 	}
 }
