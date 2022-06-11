@@ -1,5 +1,8 @@
 package modelo;
 
+import adapters.AdapterLogin;
+import adapters.IAdapterLogin;
+
 public class Operador {
 	private String nombre;
 	private String apellido;
@@ -10,7 +13,6 @@ public class Operador {
 
 	// Constructor
 	public Operador(String nombre, String apellido, String telefono, String mail, String usuario, String contraseña) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.telefono = telefono;
@@ -67,5 +69,11 @@ public class Operador {
 
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
+	}
+
+	public void login(String usuario, String contraseña) {
+		IAdapterLogin adapterLogin = new AdapterLogin();
+		adapterLogin.login(usuario, contraseña);
+		System.out.printf("El usuario %s ha sido logueado", usuario);
 	}
 }

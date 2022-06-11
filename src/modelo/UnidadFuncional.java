@@ -9,4 +9,8 @@ public class UnidadFuncional {
     private String[] inquilino;
     private Factura[] expensas;
 
+    public Double calcularDeudaAnterior() {
+        return null;
+    }
+
 }

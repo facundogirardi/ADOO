@@ -1,22 +1,24 @@
 package modelo;
 
+import strategies.IEstrategiaEnvio;
+
 public class Consorcio {
 
     private String nombreConsorcio;
     private String idConsorcio;
     private UnidadFuncional[] unidadesFuncionales;
     // adaptercuentaBancaria: IAdapterSaldo
-    // estrategiaEnvio: IObserverEnvio
+    private IEstrategiaEnvio estrategiaEnvio;
     // estrategiaPago: AbstractEstrategiaPago
     private Gasto[] gasto;
     private Double saldoActual;
     // private Operador operador;
 
     // Constructor
-    public Consorcio(String idConsorcio, String nombreConsorcio) {
-        super();
+    public Consorcio(String idConsorcio, String nombreConsorcio, IEstrategiaEnvio estrategiaEnvio) {
         this.idConsorcio = idConsorcio;
         this.nombreConsorcio = nombreConsorcio;
+        this.estrategiaEnvio = estrategiaEnvio;
     }
 
     public String getNombreConsorcio() {
@@ -49,7 +51,13 @@ public class Consorcio {
 
     // public static void eliminarObservador(UnidadFuncional unidadFuncional) {}
 
-    // public static void cambioEstrategiaEnvio(AbstractEstrategiaPago
-    // nuevaEstrategia) {}
+    public IEstrategiaEnvio getEstrategiaEnvio() {
+        return this.estrategiaEnvio;
+    }
+
+    public void cambioEstrategiaEnvio(IEstrategiaEnvio nuevaEstrategia) {
+        System.out.println("Cambiando de estrategia de envío");
+        this.estrategiaEnvio = nuevaEstrategia;
+    }
 
 }

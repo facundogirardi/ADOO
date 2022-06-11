@@ -7,5 +7,9 @@ public class Factura {
     private float total;
     private boolean pagada;
     private String mes; 
+    
+    public Factura() {
+
+    }
 
 }
