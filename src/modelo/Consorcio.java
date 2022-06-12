@@ -1,19 +1,22 @@
 package modelo;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import adapters.AdapterSaldoCuenta;
 import adapters.IAdapterSaldo;
+import enums.TipoExpensa;
 import strategies.IEstrategiaEnvio;
 
 public class Consorcio {
 
     private String nombreConsorcio;
     private String idConsorcio;
-    private UnidadFuncional[] unidadesFuncionales;
+    private ArrayList<UnidadFuncional> unidadesFuncionales;
     // adaptercuentaBancaria: IAdapterSaldo
     private IEstrategiaEnvio estrategiaEnvio;
     // estrategiaPago: AbstractEstrategiaPago
-    private Gasto[] gasto;
+    private ArrayList<Gasto> gastos;
     private Double saldoActual;
     // private Operador operador;
 
@@ -22,14 +25,19 @@ public class Consorcio {
         this.idConsorcio = idConsorcio;
         this.nombreConsorcio = nombreConsorcio;
         this.estrategiaEnvio = estrategiaEnvio;
+        this.gastos = new ArrayList<Gasto>();
     }
 
     public String getNombreConsorcio() {
-        return nombreConsorcio;
+        return this.nombreConsorcio;
     }
 
     public String getIdConsorcio() {
-        return idConsorcio;
+        return this.idConsorcio;
+    }
+
+    public ArrayList<Gasto> getGastos() {
+        return this.gastos;
     }
 
     public void setNombreConsorcio(String nombreConsorcio) {
@@ -39,20 +47,6 @@ public class Consorcio {
     public void setIdConsorcio(String idConsorcio) {
         this.idConsorcio = idConsorcio;
     }
-
-    // public static Double obtenerSaldoAtual() {
-    // return 3.0;
-    // }
-
-    // public static void generarExpensa(UnidadFuncional unidadFuncional,
-    // AbstractEstrategiaPago estrategia) {}
-
-    // public static void cambioEstrategiaPago(AbstractEstrategiaPago
-    // nuevaEstrategia) {}
-
-    // public static void agregarObservador(UnidadFuncional unidadFuncional) {}
-
-    // public static void eliminarObservador(UnidadFuncional unidadFuncional) {}
 
     public IEstrategiaEnvio getEstrategiaEnvio() {
         return this.estrategiaEnvio;
@@ -65,8 +59,18 @@ public class Consorcio {
     }
 
     public void obtenerSaldo(String cbu, String token, LocalDate fechaConsulta) {
-		IAdapterSaldo adapterLogin = new AdapterSaldoCuenta();
-		adapterLogin.obtenerSaldo(cbu, token, fechaConsulta);
+        IAdapterSaldo adapterLogin = new AdapterSaldoCuenta();
+        adapterLogin.obtenerSaldo(cbu, token, fechaConsulta);
+    }
+
+    public void generarGastoRecurrente(Float monto, TipoExpensa tipoExpensa, Integer mes, String descripcion, LocalDate recurrenciaDesde, LocalDate recurrenciaHasta) {
+        Gasto nuevoGastoRecurrente = new GastoRecurrente(monto, tipoExpensa, mes, descripcion, recurrenciaDesde, recurrenciaHasta);
+        this.gastos.add(nuevoGastoRecurrente);
+    }
+
+    public void generarGasto(Float monto, TipoExpensa tipoExpensa, Integer mes, String descripcion) {
+        Gasto nuevoGastoNormal = new Gasto(monto, tipoExpensa, mes, descripcion);
+        this.gastos.add(nuevoGastoNormal);
     }
 
 }
