@@ -1,8 +1,9 @@
 package modelo;
+import enums.TipoUnidadFuncional;
 
 public class UnidadFuncional {
 
-    private String tipo;
+    private String tipoDeUnidad;
     private Float porcentajeDePago;
     private Float metrosCuadrados;
     private String propietario;
