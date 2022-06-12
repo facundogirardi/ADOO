@@ -1,9 +1,11 @@
 package strategies;
 
-public class FuturaReserva implements IEstrategiaEnvio {
+public class FuturaReserva extends AbstractEstrategiaPago {
 
-    public void envioNotificacion() {
-        System.out.println("Estrategia de envío de notificación: Email");
+    @Override
+    public Double divisionExpensa() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

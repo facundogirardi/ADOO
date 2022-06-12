@@ -1,5 +1,6 @@
 package test;
 
+import modelo.BotRecurrente;
 import modelo.Consorcio;
 import modelo.Operador;
 import strategies.EnvioEmail;
@@ -32,6 +33,12 @@ public class Test {
 		LocalDate recurrenciaDesde = LocalDate.now();
 		LocalDate recurrenciaHasta = LocalDate.of(2022, 8, 10);
 		consorcio.generarGastoRecurrente(33f, TipoExpensa.ORDINARIA, 6, "Luz", recurrenciaDesde, recurrenciaHasta);
+
+		// TODO: Instanciar bot de gastos recurrentes.
+		BotRecurrente botRecurrente = new BotRecurrente();
+
+		// Generar expensas.
+		
 	}
 
 }

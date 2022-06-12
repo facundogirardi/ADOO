@@ -1,9 +1,11 @@
 package strategies;
 
-public class PagoFondoReserva implements IEstrategiaEnvio {
+public class PagoFondoReserva extends AbstractEstrategiaPago {
 
-    public void envioNotificacion() {
-        System.out.println("Estrategia de envío de notificación: SMS");
+    @Override
+    public Double divisionExpensa() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

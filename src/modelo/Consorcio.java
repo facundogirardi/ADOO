@@ -7,6 +7,7 @@ import adapters.AdapterSaldoCuenta;
 import adapters.IAdapterSaldo;
 import enums.TipoExpensa;
 import strategies.IEstrategiaEnvio;
+import strategies.AbstractEstrategiaPago;
 
 public class Consorcio {
 
@@ -71,6 +72,10 @@ public class Consorcio {
     public void generarGasto(Float monto, TipoExpensa tipoExpensa, Integer mes, String descripcion) {
         Gasto nuevoGastoNormal = new Gasto(monto, tipoExpensa, mes, descripcion);
         this.gastos.add(nuevoGastoNormal);
+    }
+
+    public void generarExpensa(ArrayList<Gasto> gastos, UnidadFuncional unidadFuncional, AbstractEstrategiaPago estrategiaPago) {
+        estrategiaPago.calculoDeGastos(gastos);
     }
 
 }

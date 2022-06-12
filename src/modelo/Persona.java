@@ -2,7 +2,7 @@ package modelo;
 
 import enums.TipoNotificacion;
 
-public abstract class Persona {
+public class Persona {
 
     private String dni;
     private String nombre;
