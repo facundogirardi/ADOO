@@ -28,9 +28,6 @@ public class Consorcio {
         this.estrategiaEnvio = estrategiaEnvio;
         this.gastos = new ArrayList<Gasto>();
         this.unidadesFuncionales = new ArrayList<UnidadFuncional>();
-
-        // Agregamos unidades funcionales dummies.
-        this.unidadesFuncionales.add(new UnidadFuncional((double) 20));
     }
 
     public String getNombreConsorcio() {
