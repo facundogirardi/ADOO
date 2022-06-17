@@ -16,7 +16,7 @@ public class Consorcio {
     private ArrayList<UnidadFuncional> unidadesFuncionales;
     // adaptercuentaBancaria: IAdapterSaldo
     private IEstrategiaEnvio estrategiaEnvio;
-    // estrategiaPago: AbstractEstrategiaPago
+    private AbstractEstrategiaPago estrategiaPago;
     private ArrayList<Gasto> gastos;
     private Double saldoActual;
     // private Operador operador;
@@ -27,6 +27,10 @@ public class Consorcio {
         this.nombreConsorcio = nombreConsorcio;
         this.estrategiaEnvio = estrategiaEnvio;
         this.gastos = new ArrayList<Gasto>();
+        this.unidadesFuncionales = new ArrayList<UnidadFuncional>();
+
+        // Agregamos unidades funcionales dummies.
+        this.unidadesFuncionales.add(new UnidadFuncional((double) 20));
     }
 
     public String getNombreConsorcio() {
@@ -59,11 +63,6 @@ public class Consorcio {
         System.out.println("");
     }
 
-    public void obtenerSaldo(String cbu, String token, LocalDate fechaConsulta) {
-        IAdapterSaldo adapterLogin = new AdapterSaldoCuenta();
-        adapterLogin.obtenerSaldo(cbu, token, fechaConsulta);
-    }
-
     public void generarGastoRecurrente(Float monto, TipoExpensa tipoExpensa, Integer mes, String descripcion, LocalDate recurrenciaDesde, LocalDate recurrenciaHasta) {
         Gasto nuevoGastoRecurrente = new GastoRecurrente(monto, tipoExpensa, mes, descripcion, recurrenciaDesde, recurrenciaHasta);
         this.gastos.add(nuevoGastoRecurrente);
@@ -74,8 +73,17 @@ public class Consorcio {
         this.gastos.add(nuevoGastoNormal);
     }
 
-    public void generarExpensa(ArrayList<Gasto> gastos, UnidadFuncional unidadFuncional, AbstractEstrategiaPago estrategiaPago) {
-        estrategiaPago.calculoDeGastos(gastos);
+    public void generarExpensas() {
+        Double total = this.estrategiaPago.calculoDeGastos(gastos);
+        System.out.println(total);
+        this.estrategiaPago.divisionExpensas(total, unidadesFuncionales);
+        this.estrategiaEnvio.envioNotificacion();
+    }
+
+    public void cambioEstrategiaPago(AbstractEstrategiaPago nuevaEstrategia) {
+        System.out.println("Cambiando de estrategia de pago");
+        this.estrategiaPago = nuevaEstrategia;
+        System.out.println("");
     }
 
 }

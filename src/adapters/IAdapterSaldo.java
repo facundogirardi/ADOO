@@ -3,5 +3,5 @@ package adapters;
 import java.time.LocalDate;
 
 public interface IAdapterSaldo {
-    void obtenerSaldo(String cbu, String token, LocalDate fechaConsulta);
+    Float obtenerSaldo(String cbu, String token, LocalDate fechaConsulta);
 }

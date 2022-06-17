@@ -3,8 +3,10 @@ package test;
 import modelo.BotRecurrente;
 import modelo.Consorcio;
 import modelo.Operador;
+import strategies.AbstractEstrategiaPago;
 import strategies.EnvioEmail;
 import strategies.EnvioWhatsapp;
+import strategies.PagoCompleto;
 import strategies.EnvioSMS;
 import java.time.LocalDate;
 
@@ -18,26 +20,23 @@ public class Test {
 		Consorcio consorcio = new Consorcio("0001", "Consorcio", new EnvioEmail());
 		System.out.println("Consorcio " + consorcio.getIdConsorcio() + " Creado");
 
+		// Agregar estrategia de pago al consorcio.
+		AbstractEstrategiaPago estrategiaPago = new PagoCompleto();
+		consorcio.cambioEstrategiaPago(estrategiaPago);
+
 		// Crear y loguear operador.
 		Operador operador = new Operador("Facundo", "Girardi", "123456789", "facundo.girardi@gmail.com", "fgirardi", "1234");
 		System.out.println("Operador " + operador.getUsuario() + " Creado");
 		operador.login("fgirardi", "1234");
 
-		consorcio.obtenerSaldo( "123456789", "abcd" , LocalDate.now());
-		consorcio.cambioEstrategiaEnvio(new EnvioWhatsapp());
-
-		// Generar gasto del consorcio.
+		// Generar gastos del consorcio.
 		consorcio.generarGasto(33f, TipoExpensa.ORDINARIA, 6, "Agua");
-
-		// Generar gasto recurrente del consorcio.
 		LocalDate recurrenciaDesde = LocalDate.now();
 		LocalDate recurrenciaHasta = LocalDate.of(2022, 8, 10);
 		consorcio.generarGastoRecurrente(33f, TipoExpensa.ORDINARIA, 6, "Luz", recurrenciaDesde, recurrenciaHasta);
 
-		// TODO: Instanciar bot de gastos recurrentes.
-		BotRecurrente botRecurrente = new BotRecurrente();
-
 		// Generar expensas.
+		consorcio.generarExpensas();
 		
 	}
 

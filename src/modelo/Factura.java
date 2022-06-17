@@ -4,12 +4,12 @@ public class Factura {
 
     private Float valorExtraordinario;
     private Float valorOrdinario;
-    private float total;
+    private Double total;
     private boolean pagada;
     private String mes; 
     
-    public Factura() {
-
+    public Factura(Double total) {
+        this.total = total;
     }
 
 }
