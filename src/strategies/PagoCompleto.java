@@ -11,8 +11,9 @@ public class PagoCompleto extends AbstractEstrategiaPago {
         System.out.println("Estrategia pago: Pago Completo");
         for (UnidadFuncional unidadFuncional : unidadesFuncionales) {
             Double montoAPagar = (gastoTotal * unidadFuncional.getPorcentajeDePago()) / 100;
-            Factura nuevaExpensa = new Factura(montoAPagar);
+            Factura nuevaExpensa = new Factura(montoAPagar, "Julio");
             unidadFuncional.agregarExpensa(nuevaExpensa);
+            super.loggearExpensa(nuevaExpensa);
         };
     }
 

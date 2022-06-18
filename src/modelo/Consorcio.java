@@ -72,7 +72,6 @@ public class Consorcio {
 
     public void generarExpensas() {
         Double total = this.estrategiaPago.calculoDeGastos(gastos);
-        System.out.println(total);
         this.estrategiaPago.divisionExpensas(total, unidadesFuncionales);
         this.estrategiaEnvio.envioNotificacion();
     }

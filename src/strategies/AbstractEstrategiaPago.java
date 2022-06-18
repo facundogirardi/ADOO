@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import adapters.AdapterSaldoCuenta;
 import adapters.IAdapterSaldo;
+import modelo.Factura;
 import modelo.Gasto;
 import modelo.UnidadFuncional;
 
@@ -24,4 +25,8 @@ public abstract class AbstractEstrategiaPago {
     };
 
     public abstract void divisionExpensas(Double gastoTotal, ArrayList<UnidadFuncional> unidadesFuncionales);
+
+    public void loggearExpensa(Factura factura) {
+        System.out.printf("Se generó una factura de %d para el mes de %s", factura.getTotal(), factura.getMes());
+    }
 }
