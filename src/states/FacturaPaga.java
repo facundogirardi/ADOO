@@ -1,5 +1,4 @@
 package states;
-
 import modelo.Factura;
 
 public class FacturaPaga implements IEstadoFactura {

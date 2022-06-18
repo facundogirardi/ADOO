@@ -2,7 +2,6 @@ package modelo;
 
 import states.IEstadoFactura;
 
-//TODO actualizar en Diagrama de Clases.
 public class Factura {
 
     private Double valorExtraordinario;
