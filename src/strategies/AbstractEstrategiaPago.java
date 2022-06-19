@@ -11,11 +11,14 @@ import modelo.UnidadFuncional;
 
 public abstract class AbstractEstrategiaPago {
 
-    public Double calculoDeGastos(ArrayList<Gasto> gastos) {
+    public Double calculoDeGastos(ArrayList<Gasto> gastos, int mes) {
         Double montoTotal = 0.0;
         for (Gasto gasto : gastos) {
-            montoTotal = montoTotal + gasto.getMonto();
-        };
+            if (mes == gasto.getMes()) {
+                montoTotal = montoTotal + gasto.getMonto();
+            }
+        }
+        ;
         return montoTotal;
     };
 

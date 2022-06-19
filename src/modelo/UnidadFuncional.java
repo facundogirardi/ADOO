@@ -18,7 +18,7 @@ public class UnidadFuncional {
         this.tipoDeUnidad = tipoDeUnidad;
         this.porcentajeDePago = porcentajeDePago;
         this.metrosCuadrados = metrosCuadrados;
-     //   this.Persona = propietario;
+        this.propietario = propietario;
         this.inquilinos = new ArrayList<Persona>();
         this.expensas = new ArrayList<Factura>();
     }

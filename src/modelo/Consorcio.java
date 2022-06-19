@@ -70,8 +70,8 @@ public class Consorcio {
         this.gastos.add(nuevoGastoNormal);
     }
 
-    public void generarExpensas() {
-        Double total = this.estrategiaPago.calculoDeGastos(gastos);
+    public void generarExpensas(int mes) {
+        Double total = this.estrategiaPago.calculoDeGastos(gastos, mes);
         this.estrategiaPago.divisionExpensas(total, unidadesFuncionales);
         this.estrategiaEnvio.envioNotificacion();
     }

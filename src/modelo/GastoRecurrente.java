@@ -13,5 +13,6 @@ public class GastoRecurrente extends Gasto {
         this.recurrenciaDesde = recurrenciaDesde;
         this.recurrenciaHasta = recurrenciaHasta;
     }
+    
 
 }
