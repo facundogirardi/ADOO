@@ -1,8 +1,6 @@
 package modelo;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-
 import adapters.AdapterSaldoCuenta;
 import adapters.IAdapterSaldo;
 import enums.TipoExpensa;

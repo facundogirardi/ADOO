@@ -87,9 +87,9 @@ public class Test {
 
 		// TO DO
 
-		// Generar gastos  y expensas en controller
+		// Generar gastos y expensas en controller
 		// Agregar observer
-		// Agregar suscripcion de observadores para notificacion
+		// Agregar suscripcion y eliminacion de observadores para notificacion
 		// Agregar adapter luego del strategy y System.out.print debe salir de ahi
 		// funcion de pagar expensa ?? Para el state de la factura
 		// terminar bot de generacion para gastos recurrente

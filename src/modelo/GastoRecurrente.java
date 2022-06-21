@@ -1,5 +1,4 @@
 package modelo;
-import java.time.LocalDate;
 
 import enums.TipoExpensa;
 

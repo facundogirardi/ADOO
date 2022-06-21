@@ -1,7 +1,4 @@
 package modelo;
-
-import java.time.LocalDate;
-
 import enums.TipoExpensa;
 
 public class GastoNormal extends Gasto {
@@ -16,5 +13,6 @@ public class GastoNormal extends Gasto {
     public int getMes() {
         return mes;
     }
+
     
 }

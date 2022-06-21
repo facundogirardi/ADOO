@@ -1,8 +1,5 @@
 package modelo;
 
-import adapters.AdapterLogin;
-import adapters.IAdapterLogin;
-
 public class Operador {
 	private String nombre;
 	private String apellido;

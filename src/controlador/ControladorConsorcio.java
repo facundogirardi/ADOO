@@ -9,6 +9,7 @@ import strategies.IEstrategiaEnvio;
 
 public class ControladorConsorcio {
     private ArrayList<Consorcio> consorcios;
+    private ArrayList<GastoNormal> gastos;
     private static ControladorConsorcio instancia;
 
     public ControladorConsorcio() {
@@ -36,9 +37,7 @@ public class ControladorConsorcio {
             Consorcio aux = consorcios.get(i);
             if (aux.sosElConsorcio(idConsorcio))
                 return aux;
-
         }
-
         return null;
     }
 
