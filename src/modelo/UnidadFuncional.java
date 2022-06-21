@@ -8,17 +8,20 @@ public class UnidadFuncional {
 
     private TipoUnidadFuncional tipoDeUnidad;
     private Double porcentajeDePago;
-    private Float metrosCuadrados;
-    private Persona propietario;
+    private Double metrosCuadrados;
+    private String codigo;
+    private ArrayList<Persona> propietarios;
     private ArrayList<Persona> inquilinos;
     private ArrayList<Factura> expensas;
 
-    public UnidadFuncional(TipoUnidadFuncional tipoDeUnidad, Double porcentajeDePago, Float metrosCuadrados, Persona propietario,
+    public UnidadFuncional(TipoUnidadFuncional tipoDeUnidad, Double porcentajeDePago, String codigo,
+            Double metrosCuadrados, ArrayList<Persona> propietarios,
             ArrayList<Persona> inquilinos, ArrayList<Factura> expensas) {
         this.tipoDeUnidad = tipoDeUnidad;
         this.porcentajeDePago = porcentajeDePago;
         this.metrosCuadrados = metrosCuadrados;
-        this.propietario = propietario;
+        this.codigo = codigo;
+        this.propietarios = new ArrayList<Persona>();
         this.inquilinos = new ArrayList<Persona>();
         this.expensas = new ArrayList<Factura>();
     }
@@ -27,16 +30,16 @@ public class UnidadFuncional {
         return this.tipoDeUnidad;
     }
 
-    public Persona getPropietario() {
-        return this.propietario;
-    }
-
-    public Float getMetrosCuadrados() {
+    public Double getMetrosCuadrados() {
         return this.metrosCuadrados;
     }
- 
+
     public Double getPorcentajeDePago() {
         return this.porcentajeDePago;
+    }
+
+    public String getCodigo() {
+        return this.codigo;
     }
 
     public Double calcularDeudaAnterior() {
@@ -51,8 +54,28 @@ public class UnidadFuncional {
         System.out.println(this.inquilinos);
     }
 
+    public ArrayList<Persona> getPropietarios() {
+        return propietarios;
+    }
+
     public void getExpensas() {
         System.out.println(this.expensas);
     }
-  
+
+    public boolean sosLaUnidadFuncional(String codigoBuscado) {
+        if (codigo.equalsIgnoreCase(codigoBuscado)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void agregarDueño(Persona persona) {
+        propietarios.add(persona);
+    }
+
+    public void agregarInquilino(Persona persona) {
+        inquilinos.add(persona);
+    }
+
 }

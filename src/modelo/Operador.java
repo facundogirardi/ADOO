@@ -63,16 +63,20 @@ public class Operador {
 		this.mail = mail;
 	}
 
-	public void seUsuario(String mail) {
-		this.mail = mail;
+	public void seUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
 
-	public void login(String usuario, String contraseña) {
-		IAdapterLogin adapterLogin = new AdapterLogin();
-		adapterLogin.login(usuario, contraseña);
+	public boolean sosElOperador(String usuarioBuscado) {
+		if (usuario.equalsIgnoreCase(usuarioBuscado)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
+
 }

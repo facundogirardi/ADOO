@@ -60,26 +60,37 @@ public class Consorcio {
         System.out.println("");
     }
 
-    public void generarGastoRecurrente(Float monto, TipoExpensa tipoExpensa, Integer mes, String descripcion, LocalDate recurrenciaDesde, LocalDate recurrenciaHasta) {
-        Gasto nuevoGastoRecurrente = new GastoRecurrente(monto, tipoExpensa, mes, descripcion, recurrenciaDesde, recurrenciaHasta);
+    public void generarGastoRecurrente(Float monto, TipoExpensa tipoExpensa, String descripcion, int mesDesde,
+            int mesHasta) {
+        Gasto nuevoGastoRecurrente = new GastoRecurrente(monto, tipoExpensa, descripcion, mesDesde, mesHasta);
         this.gastos.add(nuevoGastoRecurrente);
     }
 
-    public void generarGasto(Float monto, TipoExpensa tipoExpensa, Integer mes, String descripcion) {
-        Gasto nuevoGastoNormal = new Gasto(monto, tipoExpensa, mes, descripcion);
+    public void generarGastoNormal(Float monto, TipoExpensa tipoExpensa, int mes, String descripcion) {
+        Gasto nuevoGastoNormal = new GastoNormal(monto, tipoExpensa, mes, descripcion);
         this.gastos.add(nuevoGastoNormal);
     }
 
-    public void generarExpensas(int mes) {
-        Double total = this.estrategiaPago.calculoDeGastos(gastos, mes);
-        this.estrategiaPago.divisionExpensas(total, unidadesFuncionales);
-        this.estrategiaEnvio.envioNotificacion();
-    }
+  //  public void generarExpensas(Operador operador) {
+  //      Double total = this.estrategiaPago.calculoDeGastos(gastos);
+  //      this.estrategiaPago.divisionExpensas(total, unidadesFuncionales);
+  //      System.out.println(total);
+  //      this.estrategiaEnvio.envioNotificacion();
 
+  //  }
+ 
     public void cambioEstrategiaPago(AbstractEstrategiaPago nuevaEstrategia) {
         System.out.println("Cambiando de estrategia de pago");
         this.estrategiaPago = nuevaEstrategia;
         System.out.println("");
+    }
+
+    public boolean sosElConsorcio(String idConsorcioBuscado) {
+        if (idConsorcio.equalsIgnoreCase(idConsorcioBuscado)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
