@@ -11,7 +11,6 @@ public class ControladorOperador {
 	private static ControladorOperador instancia;
 
 	public ControladorOperador() {
-		super();
 		operadores = new ArrayList<Operador>();
 
 	}

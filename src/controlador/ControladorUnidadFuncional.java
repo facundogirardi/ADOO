@@ -11,7 +11,6 @@ public class ControladorUnidadFuncional {
 	private static ControladorUnidadFuncional instancia;
 
 	public ControladorUnidadFuncional() {
-		super();
 		unidadesFuncionales = new ArrayList<UnidadFuncional>();
 	}
 

@@ -13,7 +13,6 @@ public class ControladorConsorcio {
     private static ControladorConsorcio instancia;
 
     public ControladorConsorcio() {
-        super();
         consorcios = new ArrayList<Consorcio>();
     }
 

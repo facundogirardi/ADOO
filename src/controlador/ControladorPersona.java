@@ -9,7 +9,6 @@ public class ControladorPersona {
 	private static ControladorPersona instancia;
 
 	public ControladorPersona() {
-		super();
 		personas = new ArrayList<Persona>();
 	}
 
