@@ -20,7 +20,6 @@ public class Persona {
         this.tipoNotificacion = tipoNotificacion;
     }
 
-
     public String getDni() {
         return dni;
     };
@@ -44,5 +43,13 @@ public class Persona {
     public TipoNotificacion geTipoNotificacion() {
         return tipoNotificacion;
     };
+
+    public boolean sosLaPersona(String dniBuscado) {
+		if (dni.equalsIgnoreCase(dniBuscado)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
