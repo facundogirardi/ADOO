@@ -2,14 +2,11 @@ package controlador;
 
 import java.util.ArrayList;
 
-import enums.TipoExpensa;
 import modelo.Consorcio;
-import modelo.GastoNormal;
 import strategies.IEstrategiaEnvio;
 
 public class ControladorConsorcio {
     private ArrayList<Consorcio> consorcios;
-    private ArrayList<GastoNormal> gastos;
     private static ControladorConsorcio instancia;
 
     public ControladorConsorcio() {
