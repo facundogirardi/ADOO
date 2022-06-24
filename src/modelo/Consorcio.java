@@ -58,17 +58,6 @@ public class Consorcio {
         System.out.println("");
     }
 
-    public void generarGastoRecurrente(Float monto, TipoExpensa tipoExpensa, String descripcion, int mesDesde,
-            int mesHasta) {
-        Gasto nuevoGastoRecurrente = new GastoRecurrente(monto, tipoExpensa, descripcion, mesDesde, mesHasta);
-        this.gastos.add(nuevoGastoRecurrente);
-    }
-
-    public void generarGastoNormal(Float monto, TipoExpensa tipoExpensa, int mes, String descripcion) {
-        Gasto nuevoGastoNormal = new GastoNormal(monto, tipoExpensa, mes, descripcion);
-        this.gastos.add(nuevoGastoNormal);
-    }
-
   //  public void generarExpensas(Operador operador) {
   //      Double total = this.estrategiaPago.calculoDeGastos(gastos);
   //      this.estrategiaPago.divisionExpensas(total, unidadesFuncionales);
