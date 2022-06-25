@@ -1,5 +1,5 @@
 package strategies;
 
 public interface IEstrategiaEnvio {
-    public void envioNotificacion();
+    public void envioNotificacion(Notificacion notificacion);
 }
