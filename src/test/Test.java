@@ -85,7 +85,9 @@ public class Test {
 		int mesDesde = 1;
 		int mesHasta = 8;
 		ControladorGasto.getInstancia().generarGastoRecurrente(3000.00f, TipoExpensa.ORDINARIA, "ABL", mesDesde, mesHasta);
-		//ControladorGasto.getInstancia().generarGastoRecurrenteBot();
+	
+		// Genero gastos recurrentes
+		ControladorGasto.getInstancia().generarGastoRecurrenteBot();
 
 	    // Agregar estrategia de pago al consorcio.
 		AbstractEstrategiaPago estrategiaPago = new PagoFuturaReserva();
@@ -94,12 +96,11 @@ public class Test {
 
 		// TO DO
 
-		// Generar cambio de forma de pago y Expensas en controller
-		// Agregar suscripcion y eliminacion de observadores para notificacion
-		// Agregar adapter luego del strategy y System.out.print debe salir de ahi
-		// funcion de pagar expensa ?? Para el state de la factura
 		// terminar bot de generacion para gastos recurrente
-		// Actualizar diagrama
+		// Generar cambio de forma de pago y Expensas en controller
+		// Agregar adapter luego del strategy y System.out.print debe salir de ahi
+		// Agregar suscripcion y eliminacion de observadores para notificacion
+		// funcion de pagar expensa ?? Para el state de la factura
 
 	}
 

@@ -1,6 +1,8 @@
 package controlador;
 
 import java.util.ArrayList;
+
+import modelo.BotRecurrente;
 import modelo.Gasto;
 import modelo.GastoNormal;
 import modelo.GastoRecurrente;
@@ -30,6 +32,12 @@ public class ControladorGasto {
             int mesHasta) {
         Gasto newGastoRecurrente = new GastoRecurrente(monto, tipoExpensa, descripcion, mesDesde, mesHasta);
         Gastos.add(newGastoRecurrente);
+
+    }
+
+    public void generarGastoRecurrenteBot() {
+        BotRecurrente newGastoRecurrenteBot = new BotRecurrente(null);
+        Gastos.add(newGastoRecurrenteBot);
 
     }
 

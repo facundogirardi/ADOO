@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import modelo.Gasto;
+import modelo.GastoRecurrente;
 
 public class BotRecurrente {
 
@@ -11,16 +12,17 @@ public class BotRecurrente {
     private LocalDate lastExecution;
 
     LocalDate hoy = LocalDate.now();
- 
 
-//    public BotRecurrente(ArrayList<Gasto> gastos) {
-//         executionTime = (hoy.getMonthValue()- 1);
-//                for (Gasto gasto : gastos) {
-//            if (executionTime == gastoR.getMes()) {
-//                montoTotal = montoTotal + gasto.getMonto();
-//            }
-//        }
-//        }
+    public BotRecurrente(ArrayList<GastoRecurrente> gastos) {
+        executionTime = (hoy.getMonthValue() - 1);
+        System.out.println("entro");
+        Double montoTotal = 0.00;
+        for (GastoRecurrente gasto : gastos) {
+            if (executionTime >= GastoRecurrente.getMesDesde() && executionTime >= GastoRecurrente.getMesHasta()) {
+                montoTotal = montoTotal + gasto.getMonto();
+                System.out.println(montoTotal);
+            }
+        }
+    }
 
- 
 }
