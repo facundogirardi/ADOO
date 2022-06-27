@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 
 import enums.TipoUnidadFuncional;
+import states.FacturaPaga;
 
 public class UnidadFuncional {
 
@@ -76,6 +77,15 @@ public class UnidadFuncional {
 
     public void agregarInquilino(Persona persona) {
         inquilinos.add(persona);
+    }
+
+    public void pagarExpensa(String mes) {
+        for (Factura expensa : expensas) {
+            if (expensa.getMes() == mes) {
+                expensa.cambiarEstado(new FacturaPaga());
+            }
+        }
+        System.out.print(this.expensas);
     }
 
 }

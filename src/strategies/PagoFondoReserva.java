@@ -12,11 +12,11 @@ public class PagoFondoReserva extends AbstractEstrategiaPago {
 	Month mes = currentDate.getMonth();
 
     @Override
-    public void divisionExpensas(Double gastoTotal, ArrayList<UnidadFuncional> unidadesFuncionales) {
+    public void divisionExpensas(Double gastoTotal, ArrayList<UnidadFuncional> unidadesFuncionales, String usuarioGenerador) {
         System.out.println("Estrategia pago: Fondo Reserva");
         for (UnidadFuncional unidadFuncional : unidadesFuncionales) {
             Double montoAPagar = (gastoTotal * unidadFuncional.getPorcentajeDePago()) / 100;
-            Factura nuevaExpensa = new Factura(montoAPagar,  mes.toString());
+            Factura nuevaExpensa = new Factura(montoAPagar,  mes.toString(), usuarioGenerador);
             unidadFuncional.agregarExpensa(nuevaExpensa);
             super.loggearExpensa(nuevaExpensa);
         };

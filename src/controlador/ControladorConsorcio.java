@@ -3,9 +3,11 @@ package controlador;
 import java.util.ArrayList;
 
 import modelo.Consorcio;
+import strategies.AbstractEstrategiaPago;
 import strategies.IEstrategiaEnvio;
 
 public class ControladorConsorcio {
+
     private ArrayList<Consorcio> consorcios;
     private static ControladorConsorcio instancia;
 
@@ -44,6 +46,16 @@ public class ControladorConsorcio {
             }
         }
         return null;
+    }
+
+    public void generarExpensas(String idConsorcio, String idUsuario, AbstractEstrategiaPago estrategia) {
+        Consorcio consorcio = buscarConsorcio(idConsorcio);
+        consorcio.generarExpensa(estrategia, idUsuario);
+    }
+
+    public void pagarExpensa(String idConsorcio, String idUnidadFuncional, String mes) {
+        Consorcio consorcio = buscarConsorcio(idConsorcio);
+        consorcio.pagarExpensa(idUnidadFuncional, mes);
     }
 
 }

@@ -9,11 +9,11 @@ import modelo.GastoRecurrente;
 import enums.TipoExpensa;
 
 public class ControladorGasto {
-    private static ArrayList<Gasto> Gastos;
+    private static ArrayList<Gasto> gastos;
     private static ControladorGasto instancia;
 
     public ControladorGasto() {
-        Gastos = new ArrayList<Gasto>();
+        gastos = new ArrayList<Gasto>();
     }
 
     public static ControladorGasto getInstancia() {
@@ -25,20 +25,29 @@ public class ControladorGasto {
 
     public void generarGastoNormal(Float monto, int mes, TipoExpensa tipoExpensa, String descripcion) {
         Gasto newGastoNormal = new GastoNormal(monto, tipoExpensa, mes, descripcion);
-        Gastos.add(newGastoNormal);
+        gastos.add(newGastoNormal);
     }
 
     public void generarGastoRecurrente(Float monto, TipoExpensa tipoExpensa, String descripcion, int mesDesde,
             int mesHasta) {
         Gasto newGastoRecurrente = new GastoRecurrente(monto, tipoExpensa, descripcion, mesDesde, mesHasta);
-        Gastos.add(newGastoRecurrente);
+        gastos.add(newGastoRecurrente);
 
     }
 
     public void generarGastoRecurrenteBot() {
-        BotRecurrente newGastoRecurrenteBot = new BotRecurrente(null);
-        Gastos.add(newGastoRecurrenteBot);
+        ArrayList<GastoRecurrente> gastosRecurrentes = new ArrayList<GastoRecurrente>();
+        for (Gasto gasto : gastos) {
+            if (gasto instanceof GastoRecurrente) {
+                gastosRecurrentes.add((GastoRecurrente) gasto);
+            }
+        }
+        BotRecurrente botRecurrente = new BotRecurrente(gastosRecurrentes);
+        gastos.addAll(botRecurrente.getGastosRecurrentesFromBot());
+    }
 
+    public static ArrayList<Gasto> getGastos() {
+        return gastos;
     }
 
 }

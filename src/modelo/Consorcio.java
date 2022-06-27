@@ -1,9 +1,8 @@
 package modelo;
 
 import java.util.ArrayList;
-import adapters.AdapterSaldoCuenta;
-import adapters.IAdapterSaldo;
-import enums.TipoExpensa;
+
+import controlador.ControladorUnidadFuncional;
 import strategies.IEstrategiaEnvio;
 import strategies.AbstractEstrategiaPago;
 
@@ -15,7 +14,7 @@ public class Consorcio {
     // adaptercuentaBancaria: IAdapterSaldo
     private IEstrategiaEnvio estrategiaEnvio;
     private AbstractEstrategiaPago estrategiaPago;
-    private ArrayList<Gasto> gastos;
+    private ArrayList<GastoNormal> gastos;
     private Double saldoActual;
     // private Operador operador;
 
@@ -24,7 +23,7 @@ public class Consorcio {
         this.idConsorcio = idConsorcio;
         this.nombreConsorcio = nombreConsorcio;
         this.estrategiaEnvio = estrategiaEnvio;
-        this.gastos = new ArrayList<Gasto>();
+        this.gastos = new ArrayList<GastoNormal>();
         this.unidadesFuncionales = new ArrayList<UnidadFuncional>();
     }
 
@@ -36,7 +35,7 @@ public class Consorcio {
         return this.idConsorcio;
     }
 
-    public ArrayList<Gasto> getGastos() {
+    public ArrayList<GastoNormal> getGastos() {
         return this.gastos;
     }
 
@@ -58,16 +57,15 @@ public class Consorcio {
         System.out.println("");
     }
 
-  //  public void generarExpensas(Operador operador) {
-  //      Double total = this.estrategiaPago.calculoDeGastos(gastos);
-  //      this.estrategiaPago.divisionExpensas(total, unidadesFuncionales);
-  //      System.out.println(total);
-  //      this.estrategiaEnvio.envioNotificacion();
-
-  //  }
+    public void generarExpensa(AbstractEstrategiaPago estrategia, String idUsuario) {
+        this.cambioEstrategiaPago(estrategia);
+        Double total = this.estrategiaPago.calculoDeGastos(gastos);
+        this.estrategiaPago.divisionExpensas(total, unidadesFuncionales, idUsuario);
+        // this.estrategiaEnvio.envioNotificacion();
+    }
  
     public void cambioEstrategiaPago(AbstractEstrategiaPago nuevaEstrategia) {
-        System.out.println("Cambiando de estrategia de pago");
+        System.out.println("Estableciendo estrategia de pago");
         this.estrategiaPago = nuevaEstrategia;
         System.out.println("");
     }
@@ -78,6 +76,11 @@ public class Consorcio {
         } else {
             return false;
         }
+    }
+
+    public void pagarExpensa(String idUnidadFuncional, String mes) {
+        UnidadFuncional unidadFuncional = ControladorUnidadFuncional.getInstancia().buscarUnidadFuncional(idUnidadFuncional);
+        unidadFuncional.pagarExpensa(mes);
     }
 
 }

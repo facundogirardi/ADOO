@@ -1,28 +1,24 @@
 package modelo;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
-import modelo.Gasto;
-import modelo.GastoRecurrente;
-
 public class BotRecurrente {
 
-    private int executionTime;
-    private LocalDate lastExecution;
-
-    LocalDate hoy = LocalDate.now();
+    private ArrayList<GastoRecurrente> gastos;
+    private int executionTime = (LocalDate.now().getMonthValue() - 1);
 
     public BotRecurrente(ArrayList<GastoRecurrente> gastos) {
-        executionTime = (hoy.getMonthValue() - 1);
-        System.out.println("entro");
-        Double montoTotal = 0.00;
-        for (GastoRecurrente gasto : gastos) {
-            if (executionTime >= GastoRecurrente.getMesDesde() && executionTime >= GastoRecurrente.getMesHasta()) {
-                montoTotal = montoTotal + gasto.getMonto();
-                System.out.println(montoTotal);
-            }
-        }
+        this.gastos = gastos;
     }
 
+    public ArrayList<GastoNormal> getGastosRecurrentesFromBot() {
+        ArrayList<GastoNormal> resultado = new ArrayList<GastoNormal>();
+        for (GastoRecurrente gasto : gastos) {
+            if (this.executionTime >= GastoRecurrente.getMesDesde() && this.executionTime >= GastoRecurrente.getMesHasta()) {
+                GastoNormal nuevoGasto = new GastoNormal(gasto.getMonto(), gasto.getTipoExpensa(), executionTime, gasto.getDescripcion());
+                resultado.add(nuevoGasto);
+            }
+        }
+        return resultado;
+    }
 }
