@@ -5,8 +5,6 @@ import states.IEstadoFactura;
 
 public class Factura {
 
-    private Double valorExtraordinario;
-    private Double valorOrdinario;
     private Double total;
     private IEstadoFactura estado;
     private String mes; 
