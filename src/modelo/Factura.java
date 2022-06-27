@@ -12,12 +12,14 @@ public class Factura {
     private String mes; 
     private LocalDate fechaGeneracion;
     private String usuarioGenerador;
+    private String criterioElegido;
     
-    public Factura(Double total, String mes, String usuarioGenerador, LocalDate fechaGeneracion) {
+    public Factura(Double total, String mes, String usuarioGenerador, LocalDate fechaGeneracion, String criterioElegido) {
         this.total = total;
         this.mes = mes;
         this.usuarioGenerador = usuarioGenerador;
         this.fechaGeneracion = fechaGeneracion;
+        this.criterioElegido = criterioElegido;
         this.estado = new FacturaImpaga();
     }
 
@@ -33,6 +35,10 @@ public class Factura {
         return this.mes;
     }
 
+    public String getCriterioElegido() {
+        return this.criterioElegido;
+    }
+
     public Double getTotal() {
         return this.total;
     }
@@ -41,7 +47,6 @@ public class Factura {
         return this.usuarioGenerador;
     }
 
-    
     public LocalDate getFechaGeneracion() {
         return this.fechaGeneracion;
     }

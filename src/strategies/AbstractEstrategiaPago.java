@@ -29,7 +29,7 @@ public abstract class AbstractEstrategiaPago {
 
     public abstract void divisionExpensas(Double gastoTotal, ArrayList<UnidadFuncional> unidadesFuncionales, String usuarioGenerador);
 
-    public void loggearExpensa(Factura factura) {
-        System.out.println("Se generó una factura de : " + factura.getTotal() + " para el mes de : " + factura.getMes() + " - Usuario : "+ factura.getUsuarioGenerador());
+    public void loggearExpensa(Factura factura, String codigoUnidadfuncional) {
+        System.out.println("Se generó una factura para la unidad funcional : " + codigoUnidadfuncional + " por un importe de : " + factura.getTotal() + " para el mes de : " + factura.getMes() + " - Usuario : "+ factura.getUsuarioGenerador() + "- Criterio Elegido : " + factura.getCriterioElegido());
     }
 }

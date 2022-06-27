@@ -8,6 +8,8 @@ import strategies.AbstractEstrategiaPago;
 import strategies.EnvioEmail;
 import strategies.EnvioWhatsapp;
 import strategies.IEstrategiaEnvio;
+import strategies.PagoCompleto;
+import strategies.PagoFondoReserva;
 import strategies.PagoFuturaReserva;
 import enums.TipoExpensa;
 import enums.TipoNotificacion;
@@ -47,7 +49,7 @@ public class Test {
 		// Crear unidad funcional.
 		ControladorUnidadFuncional.getInstancia().crearNuevaUnidadFuncional(TipoUnidadFuncional.DEPARTAMENTO, 20.00, "1234", 20.00, null, null, null);
 		System.out.println("Creo Unidad Funcional - Codigo : " + ControladorUnidadFuncional.getInstancia().getFuncional("1234").getCodigo());
-		ControladorUnidadFuncional.getInstancia().crearNuevaUnidadFuncional(TipoUnidadFuncional.DEPARTAMENTO, 20.00, "1235", 20.00, null, null, null);
+		ControladorUnidadFuncional.getInstancia().crearNuevaUnidadFuncional(TipoUnidadFuncional.DEPARTAMENTO, 60.00, "1235", 160.00, null, null, null);
 		System.out.println("Creo Unidad Funcional - Codigo : " + ControladorUnidadFuncional.getInstancia().getFuncional("1235").getCodigo());
 
 		// Agrego unidad funcional al consorcio
@@ -118,10 +120,8 @@ public class Test {
 		// Pasar la estrategia de envio
 		// El consorcio no deberia tener adentro los array de gastos, personas, unidades funcionales, empleados?
 		// gasto recurrente no carga porque ahora esta vacio el array (porque los gastos estan en el consorcio)
-		// agregar criterio elegido en factura
-		// print de "Se generó una factura de" se hace dos veces
-		// Verificar pago de Facturas/Expensas
-		// Probar los otros criterios de pago
+		// meter el saldo del consorcio para el pagofondoReserva
+		// Hacer Verificar pago de Facturas/Expensas 
 
 	}
 

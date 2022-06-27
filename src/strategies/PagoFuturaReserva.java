@@ -11,15 +11,16 @@ public class PagoFuturaReserva extends AbstractEstrategiaPago {
 
     LocalDate fechaGeneracion = LocalDate.now();
     Month mes = fechaGeneracion.getMonth();
+    String criterioElegido = "PagoFuturaReserva";
 
     @Override
     public void divisionExpensas(Double gastoTotal, ArrayList<UnidadFuncional> unidadesFuncionales, String usuarioGenerador) {
         System.out.println("Estrategia pago establecida : Futura Reserva");
         for (UnidadFuncional unidadFuncional : unidadesFuncionales) {
             Double montoAPagar = (gastoTotal * unidadFuncional.getPorcentajeDePago()) / 100;
-            Factura nuevaExpensa = new Factura(montoAPagar + ((montoAPagar * 10) / 100), mes.toString(), usuarioGenerador, fechaGeneracion);
+            Factura nuevaExpensa = new Factura(montoAPagar + ((montoAPagar * 10) / 100), mes.toString(), usuarioGenerador, fechaGeneracion, criterioElegido);
             unidadFuncional.agregarExpensa(nuevaExpensa);
-            super.loggearExpensa(nuevaExpensa);
+            super.loggearExpensa(nuevaExpensa, unidadFuncional.getCodigo());
         };
     }
 
