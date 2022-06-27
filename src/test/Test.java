@@ -76,26 +76,26 @@ public class Test {
 
 		// Generar gastos del consorcio.
 		// Gasto normal
-	    ControladorGasto.getInstancia().generarGastoNormal("AAAA",1500.00f, 6, TipoExpensa.ORDINARIA, "Agua");
-		ControladorGasto.getInstancia().generarGastoNormal("AAAB",750.50f, 6, TipoExpensa.ORDINARIA, "Gas");
-		ControladorGasto.getInstancia().generarGastoNormal("AAAC",750.50f, 8, TipoExpensa.ORDINARIA, "Gas"); // Gasto de otro mes
-		ControladorGasto.getInstancia().generarGastoNormal("AAAD",200.00f, 6, TipoExpensa.EXTRAORDINARIA, "Arreglo de Ascensor");
+	    ControladorGasto.getInstancia().generarGastoNormal("GN01",1500.00f, 6, TipoExpensa.ORDINARIA, "Agua");
+		ControladorGasto.getInstancia().generarGastoNormal("GN02",750.50f, 6, TipoExpensa.ORDINARIA, "Gas");
+		ControladorGasto.getInstancia().generarGastoNormal("GN03",750.50f, 8, TipoExpensa.ORDINARIA, "Gas"); // Gasto de otro mes
+		ControladorGasto.getInstancia().generarGastoNormal("GN04",200.00f, 6, TipoExpensa.EXTRAORDINARIA, "Arreglo de Ascensor");
 
 		// Gasto recurrente
 		int mesDesde = 1;
 		int mesHasta = 8;
-		ControladorGasto.getInstancia().generarGastoRecurrente("AAAE",3000.00f, TipoExpensa.ORDINARIA, "ABL", mesDesde, mesHasta);
+		ControladorGasto.getInstancia().generarGastoRecurrente("GR01",3000.00f, TipoExpensa.ORDINARIA, "ABL", mesDesde, mesHasta);
 
 		// Agrego gastos al consorcio
-		GastoNormal gastoNormal_1 = (GastoNormal) ControladorGasto.getInstancia().buscarGasto("AAAA");
+		GastoNormal gastoNormal_1 = (GastoNormal) ControladorGasto.getInstancia().buscarGasto("GN01");
         ControladorConsorcio.getInstancia().añadirGastoNormalConsorcio("0001", gastoNormal_1);
-		GastoNormal gastoNormal_2 = (GastoNormal) ControladorGasto.getInstancia().buscarGasto("AAAB");
+		GastoNormal gastoNormal_2 = (GastoNormal) ControladorGasto.getInstancia().buscarGasto("GN02");
 		ControladorConsorcio.getInstancia().añadirGastoNormalConsorcio("0001", gastoNormal_2);
-		GastoNormal gastoNormal_3 = (GastoNormal) ControladorGasto.getInstancia().buscarGasto("AAAC");
+		GastoNormal gastoNormal_3 = (GastoNormal) ControladorGasto.getInstancia().buscarGasto("GN03");
 		ControladorConsorcio.getInstancia().añadirGastoNormalConsorcio("0001", gastoNormal_3);
-		GastoNormal gastoNormal_4 = (GastoNormal) ControladorGasto.getInstancia().buscarGasto("AAAD");
+		GastoNormal gastoNormal_4 = (GastoNormal) ControladorGasto.getInstancia().buscarGasto("GN04");
 		ControladorConsorcio.getInstancia().añadirGastoNormalConsorcio("0001", gastoNormal_4);
-		GastoRecurrente gastoRecurrente_1 = (GastoRecurrente) ControladorGasto.getInstancia().buscarGasto("AAAE");
+		GastoRecurrente gastoRecurrente_1 = (GastoRecurrente) ControladorGasto.getInstancia().buscarGasto("GR01");
 		ControladorConsorcio.getInstancia().añadirGastoRecurrenteConsorcio("0001", gastoRecurrente_1);
 
 		// Genero gastos recurrentes

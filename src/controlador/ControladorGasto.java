@@ -1,5 +1,6 @@
 package controlador;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modelo.BotRecurrente;
@@ -11,6 +12,7 @@ import enums.TipoExpensa;
 public class ControladorGasto {
     private static ArrayList<Gasto> gastos;
     private static ControladorGasto instancia;
+    private int mesActual = (LocalDate.now().getMonthValue());
 
     public ControladorGasto() {
         gastos = new ArrayList<Gasto>();
@@ -24,13 +26,20 @@ public class ControladorGasto {
     }
 
     public void generarGastoNormal(String idGasto, Float monto, int mes, TipoExpensa tipoExpensa, String descripcion) {
-        Gasto newGastoNormal = new GastoNormal(idGasto, monto, tipoExpensa, mes, descripcion);
-        gastos.add(newGastoNormal);
+        Gasto newGastoNormal = buscarGasto(idGasto);
+        if (newGastoNormal == null && mesActual == mes) {
+            newGastoNormal = new GastoNormal(idGasto, monto, tipoExpensa, mes, descripcion);
+            gastos.add(newGastoNormal);
+        }
     }
 
-    public void generarGastoRecurrente(String idGasto, Float monto, TipoExpensa tipoExpensa, String descripcion, int mesDesde, int mesHasta) {
-        Gasto newGastoRecurrente = new GastoRecurrente(idGasto, monto, tipoExpensa, descripcion, mesDesde, mesHasta);
-        gastos.add(newGastoRecurrente);
+    public void generarGastoRecurrente(String idGasto, Float monto, TipoExpensa tipoExpensa, String descripcion,
+            int mesDesde, int mesHasta) {
+        Gasto newGastoRecurrente = buscarGasto(idGasto);
+        if (newGastoRecurrente == null) {
+            newGastoRecurrente = new GastoRecurrente(idGasto, monto, tipoExpensa, descripcion, mesDesde, mesHasta);
+            gastos.add(newGastoRecurrente);
+        }
 
     }
 
@@ -50,14 +59,14 @@ public class ControladorGasto {
     }
 
     public Gasto buscarGasto(String idGasto) {
-		for (int i = 0; i < gastos.size(); i++) {
-			Gasto aux = gastos.get(i);
-			if (aux.sosElGasto(idGasto))
-				return aux;
+        for (int i = 0; i < gastos.size(); i++) {
+            Gasto aux = gastos.get(i);
+            if (aux.sosElGasto(idGasto))
+                return aux;
 
-		}
+        }
 
-		return null;
-	}
+        return null;
+    }
 
 }

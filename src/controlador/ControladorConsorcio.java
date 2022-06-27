@@ -63,26 +63,25 @@ public class ControladorConsorcio {
         consorcio.pagarExpensa(idUnidadFuncional, mes);
     }
 
-	public void añadirGastoNormalConsorcio(String idConsorcio, GastoNormal gastoNormal ) {
-		Consorcio consorcio = this.buscarConsorcio(idConsorcio);
-		if (consorcio != null) {
-			consorcio.añadirGastoNormalConsorcio(gastoNormal);
-		}
-	}
+    public void añadirGastoNormalConsorcio(String idConsorcio, GastoNormal gastoNormal) {
+        Consorcio consorcio = this.buscarConsorcio(idConsorcio);
+        if (consorcio != null && gastoNormal != null) {
+            consorcio.añadirGastoNormalConsorcio(gastoNormal);
+        }
+    }
 
-    public void añadirGastoRecurrenteConsorcio(String idConsorcio, GastoRecurrente gastoRecurrente ) {
-		Consorcio consorcio = this.buscarConsorcio(idConsorcio);
-		if (consorcio != null) {
-			consorcio.añadirGastoRecurrenteConsorcio(gastoRecurrente);
-		}
-	}
+    public void añadirGastoRecurrenteConsorcio(String idConsorcio, GastoRecurrente gastoRecurrente) {
+        Consorcio consorcio = this.buscarConsorcio(idConsorcio);
+        if (consorcio != null && gastoRecurrente != null) {
+            consorcio.añadirGastoRecurrenteConsorcio(gastoRecurrente);
+        }
+    }
 
-    public void añadirUnidadFuncionalConsorcio(String idConsorcio, UnidadFuncional unidadFuncional ) {
-		Consorcio consorcio = this.buscarConsorcio(idConsorcio);
-		if (consorcio != null) {
-			consorcio.añadirUnidadFuncionalConsorcio(unidadFuncional);
-		}
-	}
-    
+    public void añadirUnidadFuncionalConsorcio(String idConsorcio, UnidadFuncional unidadFuncional) {
+        Consorcio consorcio = this.buscarConsorcio(idConsorcio);
+        if (consorcio != null && unidadFuncional != null) {
+            consorcio.añadirUnidadFuncionalConsorcio(unidadFuncional);
+        }
+    }
 
 }

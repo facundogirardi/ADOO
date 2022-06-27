@@ -9,15 +9,15 @@ import modelo.UnidadFuncional;
 
 public class PagoFuturaReserva extends AbstractEstrategiaPago {
 
-    LocalDate currentDate = LocalDate.now();
-    Month mes = currentDate.getMonth();
+    LocalDate fechaGeneracion = LocalDate.now();
+    Month mes = fechaGeneracion.getMonth();
 
     @Override
     public void divisionExpensas(Double gastoTotal, ArrayList<UnidadFuncional> unidadesFuncionales, String usuarioGenerador) {
         System.out.println("Estrategia pago establecida : Futura Reserva");
         for (UnidadFuncional unidadFuncional : unidadesFuncionales) {
             Double montoAPagar = (gastoTotal * unidadFuncional.getPorcentajeDePago()) / 100;
-            Factura nuevaExpensa = new Factura(montoAPagar + ((montoAPagar * 10) / 100), mes.toString(), usuarioGenerador);
+            Factura nuevaExpensa = new Factura(montoAPagar + ((montoAPagar * 10) / 100), mes.toString(), usuarioGenerador, fechaGeneracion);
             unidadFuncional.agregarExpensa(nuevaExpensa);
             super.loggearExpensa(nuevaExpensa);
         };
