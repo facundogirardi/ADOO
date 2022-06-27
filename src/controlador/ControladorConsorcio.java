@@ -3,12 +3,17 @@ package controlador;
 import java.util.ArrayList;
 
 import modelo.Consorcio;
+import modelo.Gasto;
+import modelo.GastoNormal;
+import modelo.GastoRecurrente;
+import modelo.UnidadFuncional;
 import strategies.AbstractEstrategiaPago;
 import strategies.IEstrategiaEnvio;
 
 public class ControladorConsorcio {
 
     private ArrayList<Consorcio> consorcios;
+    private ArrayList<Gasto> gastos;
     private static ControladorConsorcio instancia;
 
     public ControladorConsorcio() {
@@ -57,5 +62,27 @@ public class ControladorConsorcio {
         Consorcio consorcio = buscarConsorcio(idConsorcio);
         consorcio.pagarExpensa(idUnidadFuncional, mes);
     }
+
+	public void añadirGastoNormalConsorcio(String idConsorcio, GastoNormal gastoNormal ) {
+		Consorcio consorcio = this.buscarConsorcio(idConsorcio);
+		if (consorcio != null) {
+			consorcio.añadirGastoNormalConsorcio(gastoNormal);
+		}
+	}
+
+    public void añadirGastoRecurrenteConsorcio(String idConsorcio, GastoRecurrente gastoRecurrente ) {
+		Consorcio consorcio = this.buscarConsorcio(idConsorcio);
+		if (consorcio != null) {
+			consorcio.añadirGastoRecurrenteConsorcio(gastoRecurrente);
+		}
+	}
+
+    public void añadirUnidadFuncionalConsorcio(String idConsorcio, UnidadFuncional unidadFuncional ) {
+		Consorcio consorcio = this.buscarConsorcio(idConsorcio);
+		if (consorcio != null) {
+			consorcio.añadirUnidadFuncionalConsorcio(unidadFuncional);
+		}
+	}
+    
 
 }

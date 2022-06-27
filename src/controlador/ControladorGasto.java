@@ -23,14 +23,13 @@ public class ControladorGasto {
         return instancia;
     }
 
-    public void generarGastoNormal(Float monto, int mes, TipoExpensa tipoExpensa, String descripcion) {
-        Gasto newGastoNormal = new GastoNormal(monto, tipoExpensa, mes, descripcion);
+    public void generarGastoNormal(String idGasto, Float monto, int mes, TipoExpensa tipoExpensa, String descripcion) {
+        Gasto newGastoNormal = new GastoNormal(idGasto, monto, tipoExpensa, mes, descripcion);
         gastos.add(newGastoNormal);
     }
 
-    public void generarGastoRecurrente(Float monto, TipoExpensa tipoExpensa, String descripcion, int mesDesde,
-            int mesHasta) {
-        Gasto newGastoRecurrente = new GastoRecurrente(monto, tipoExpensa, descripcion, mesDesde, mesHasta);
+    public void generarGastoRecurrente(String idGasto, Float monto, TipoExpensa tipoExpensa, String descripcion, int mesDesde, int mesHasta) {
+        Gasto newGastoRecurrente = new GastoRecurrente(idGasto, monto, tipoExpensa, descripcion, mesDesde, mesHasta);
         gastos.add(newGastoRecurrente);
 
     }
@@ -49,5 +48,16 @@ public class ControladorGasto {
     public static ArrayList<Gasto> getGastos() {
         return gastos;
     }
+
+    public Gasto buscarGasto(String idGasto) {
+		for (int i = 0; i < gastos.size(); i++) {
+			Gasto aux = gastos.get(i);
+			if (aux.sosElGasto(idGasto))
+				return aux;
+
+		}
+
+		return null;
+	}
 
 }

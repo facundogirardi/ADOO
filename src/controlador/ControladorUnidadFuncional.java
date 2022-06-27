@@ -22,14 +22,16 @@ public class ControladorUnidadFuncional {
 	}
 
 	public void crearNuevaUnidadFuncional(TipoUnidadFuncional tipoDeUnidad, Double porcentajeDePago,
-			String codigo, Double metrosCuadrados,ArrayList<Persona> propietarios,
+			String codigo, Double metrosCuadrados, ArrayList<Persona> propietarios,
 			ArrayList<Persona> inquilinos, ArrayList<Factura> expensas) {
 		UnidadFuncional newUnidadFuncional = buscarUnidadFuncional(codigo);
 		if (newUnidadFuncional == null) {
 			newUnidadFuncional = new UnidadFuncional(tipoDeUnidad, porcentajeDePago, codigo, metrosCuadrados,
 					propietarios, inquilinos, expensas);
 			unidadesFuncionales.add(newUnidadFuncional);
+
 		}
+
 	}
 
 	public UnidadFuncional buscarUnidadFuncional(String codigo) {

@@ -7,8 +7,8 @@ public class GastoRecurrente extends Gasto {
     private static int mesDesde;
     private static int mesHasta;
             
-    public GastoRecurrente(Float monto, TipoExpensa tipoExpensa, String descripcion, int mesDesde, int mesHasta) {
-        super(monto, tipoExpensa, descripcion);
+    public GastoRecurrente(String idGasto, Float monto, TipoExpensa tipoExpensa, String descripcion, int mesDesde, int mesHasta) {
+        super(idGasto, monto, tipoExpensa, descripcion);
         this.mesDesde = mesDesde;
         this.mesHasta = mesHasta;
     }

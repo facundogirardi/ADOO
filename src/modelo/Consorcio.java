@@ -15,6 +15,7 @@ public class Consorcio {
     private IEstrategiaEnvio estrategiaEnvio;
     private AbstractEstrategiaPago estrategiaPago;
     private ArrayList<GastoNormal> gastos;
+    private ArrayList<GastoRecurrente> gastosRecurrentes;
     private Double saldoActual;
     // private Operador operador;
 
@@ -24,6 +25,8 @@ public class Consorcio {
         this.nombreConsorcio = nombreConsorcio;
         this.estrategiaEnvio = estrategiaEnvio;
         this.gastos = new ArrayList<GastoNormal>();
+        this.unidadesFuncionales = new ArrayList<UnidadFuncional>();
+        this.gastosRecurrentes = new ArrayList<GastoRecurrente>();
         this.unidadesFuncionales = new ArrayList<UnidadFuncional>();
     }
 
@@ -54,7 +57,6 @@ public class Consorcio {
     public void cambioEstrategiaEnvio(IEstrategiaEnvio nuevaEstrategia) {
         System.out.println("Cambiando de estrategia de envío");
         this.estrategiaEnvio = nuevaEstrategia;
-        System.out.println("");
     }
 
     public void generarExpensa(AbstractEstrategiaPago estrategia, String idUsuario) {
@@ -67,7 +69,6 @@ public class Consorcio {
     public void cambioEstrategiaPago(AbstractEstrategiaPago nuevaEstrategia) {
         System.out.println("Estableciendo estrategia de pago");
         this.estrategiaPago = nuevaEstrategia;
-        System.out.println("");
     }
 
     public boolean sosElConsorcio(String idConsorcioBuscado) {
@@ -81,6 +82,18 @@ public class Consorcio {
     public void pagarExpensa(String idUnidadFuncional, String mes) {
         UnidadFuncional unidadFuncional = ControladorUnidadFuncional.getInstancia().buscarUnidadFuncional(idUnidadFuncional);
         unidadFuncional.pagarExpensa(mes);
+    }
+
+    public void añadirGastoNormalConsorcio(GastoNormal gastoNormal) {
+        gastos.add(gastoNormal);
+    }
+
+    public void añadirGastoRecurrenteConsorcio(GastoRecurrente gastoRecurrente) {
+        gastosRecurrentes.add(gastoRecurrente);
+    }
+
+    public void añadirUnidadFuncionalConsorcio(UnidadFuncional unidadFuncional) {
+        unidadesFuncionales.add(unidadFuncional);
     }
 
 }

@@ -85,7 +85,7 @@ public class UnidadFuncional {
                 expensa.cambiarEstado(new FacturaPaga());
             }
         }
-        System.out.print(this.expensas);
+
     }
 
 }

@@ -5,8 +5,8 @@ public class GastoNormal extends Gasto {
 
     private int mes;
 
-    public GastoNormal(Float monto, TipoExpensa tipoExpensa, int mes, String descripcion) {
-        super(monto, tipoExpensa, descripcion);
+    public GastoNormal(String idGasto , Float monto, TipoExpensa tipoExpensa, int mes, String descripcion) {
+        super(idGasto, monto, tipoExpensa, descripcion);
         this.mes = mes;
     }
  

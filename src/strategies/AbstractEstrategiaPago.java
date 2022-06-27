@@ -15,7 +15,6 @@ public abstract class AbstractEstrategiaPago {
         Double montoTotal = 0.0;
         int mes = LocalDate.now().getMonthValue();
         for (GastoNormal gasto : gastos) {
-            System.out.println(gasto.getMes());
             if (mes == gasto.getMes()) {
                 montoTotal = montoTotal + gasto.getMonto();
             }
@@ -31,6 +30,6 @@ public abstract class AbstractEstrategiaPago {
     public abstract void divisionExpensas(Double gastoTotal, ArrayList<UnidadFuncional> unidadesFuncionales, String usuarioGenerador);
 
     public void loggearExpensa(Factura factura) {
-        System.out.printf("Se generó una factura de %d para el mes de %s", factura.getTotal(), factura.getMes());
+        System.out.println("Se generó una factura de : " + factura.getTotal() + " para el mes de : " + factura.getMes());
     }
 }
