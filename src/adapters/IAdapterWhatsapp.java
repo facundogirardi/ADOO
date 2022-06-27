@@ -1,5 +1,7 @@
 package adapters;
 
+import strategies.Notificacion;
+
 public interface IAdapterWhatsapp {
-    void envioNotificacion();
+    void envioNotificacion(Notificacion notificacion);
 }

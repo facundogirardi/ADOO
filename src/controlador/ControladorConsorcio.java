@@ -6,6 +6,7 @@ import modelo.Consorcio;
 import modelo.Gasto;
 import modelo.GastoNormal;
 import modelo.GastoRecurrente;
+import modelo.Persona;
 import modelo.UnidadFuncional;
 import strategies.AbstractEstrategiaPago;
 import strategies.IEstrategiaEnvio;
@@ -27,10 +28,10 @@ public class ControladorConsorcio {
         return instancia;
     }
 
-    public void crearNuevoConsorcio(String idConsorcio, String nombreConsorcio, IEstrategiaEnvio estrategiaEnvio) {
+    public void crearNuevoConsorcio(String idConsorcio, String nombreConsorcio) {
         Consorcio newConsorcio = buscarConsorcio(idConsorcio);
         if (newConsorcio == null) {
-            newConsorcio = new Consorcio(idConsorcio, nombreConsorcio, estrategiaEnvio);
+            newConsorcio = new Consorcio(idConsorcio, nombreConsorcio);
             consorcios.add(newConsorcio);
         }
     }
@@ -81,6 +82,22 @@ public class ControladorConsorcio {
         Consorcio consorcio = this.buscarConsorcio(idConsorcio);
         if (consorcio != null && unidadFuncional != null) {
             consorcio.añadirUnidadFuncionalConsorcio(unidadFuncional);
+        }
+    }
+
+    public void suscribirObservador(String idConsorcio, Persona persona) {
+        Consorcio consorcio = this.buscarConsorcio(idConsorcio);
+        if (consorcio != null && persona != null) {
+            consorcio.suscribirObservador(persona);
+
+        }
+    }
+
+    public void eliminarObservador(String idConsorcio, Persona persona) {
+        Consorcio consorcio = this.buscarConsorcio(idConsorcio);
+        if (consorcio != null && persona != null) {
+            consorcio.eliminarObservador(persona);
+
         }
     }
 

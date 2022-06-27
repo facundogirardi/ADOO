@@ -1,27 +1,19 @@
 package test;
 
-import modelo.BotRecurrente;
-import modelo.Consorcio;
-import modelo.Gasto;
 import modelo.GastoNormal;
 import modelo.GastoRecurrente;
-import modelo.Operador;
 import modelo.Persona;
 import modelo.UnidadFuncional;
 import strategies.AbstractEstrategiaPago;
 import strategies.EnvioEmail;
 import strategies.EnvioWhatsapp;
+import strategies.IEstrategiaEnvio;
 import strategies.PagoFuturaReserva;
-import strategies.PagoCompleto;
-import strategies.PagoFondoReserva;
-import strategies.EnvioSMS;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.Calendar;
 import enums.TipoExpensa;
 import enums.TipoNotificacion;
 import enums.TipoUnidadFuncional;
+import adapters.AdapterEmail;
+import adapters.AdapterWhatsapp;
 import controlador.ControladorConsorcio;
 import controlador.ControladorGasto;
 import controlador.ControladorOperador;
@@ -33,7 +25,7 @@ public class Test {
 	public static void main(String[] args) {
 
 		// Crear consorcio.
-		ControladorConsorcio.getInstancia().crearNuevoConsorcio("0001", "Consorcio", new EnvioEmail());
+		ControladorConsorcio.getInstancia().crearNuevoConsorcio("0001", "Consorcio");
 		System.out.println("Creo Consorcio : " + ControladorConsorcio.getInstancia().getConsorcio("0001").getIdConsorcio() + " - ");
 
 		// Crear y loguear operador.
@@ -47,7 +39,9 @@ public class Test {
 		// Crear personas
 		ControladorPersona.getInstancia().crearNuevaPersona("37349380", "Matias", "Stricagnoli", "Matias@gmail.com", "111111111", TipoNotificacion.WHATSAPP);
 		System.out.println("Creo Persona : " + ControladorPersona.getInstancia().getPersona("37349380").getNombre());
-		ControladorPersona.getInstancia().crearNuevaPersona("37349381", "Marcela", "Objetos", "Marcela@gmail.com", "111111111", TipoNotificacion.SMS);
+		ControladorPersona.getInstancia().crearNuevaPersona("37349381", "Marcela", "Objetos", "Marcela@gmail.com", "111111111", TipoNotificacion.EMAIL);
+		System.out.println("Creo Persona : " + ControladorPersona.getInstancia().getPersona("37349381").getNombre());
+		ControladorPersona.getInstancia().crearNuevaPersona("37349382", "Lautario", "Singleton", "Marcela@gmail.com", "111111111", TipoNotificacion.SMS);
 		System.out.println("Creo Persona : " + ControladorPersona.getInstancia().getPersona("37349381").getNombre());
 
 		// Crear unidad funcional.
@@ -67,12 +61,21 @@ public class Test {
 		ControladorUnidadFuncional.getInstancia().agregarDueño(dueño_1, "1234");
 		Persona dueño_2 = ControladorPersona.getInstancia().buscarPersona("37349380");
 		ControladorUnidadFuncional.getInstancia().agregarDueño(dueño_2, "1235");
-
+		
 		// Agrego Inquilino
-		Persona inquilino_1 = ControladorPersona.getInstancia().buscarPersona("37349380");
+		Persona inquilino_1 = ControladorPersona.getInstancia().buscarPersona("37349381");
 		ControladorUnidadFuncional.getInstancia().agregarInquilino(inquilino_1, "1234");
-		Persona inquilino_2 = ControladorPersona.getInstancia().buscarPersona("37349380");
+		Persona inquilino_2 = ControladorPersona.getInstancia().buscarPersona("37349381");
 		ControladorUnidadFuncional.getInstancia().agregarInquilino(inquilino_2, "1234");
+		Persona inquilino_3 = ControladorPersona.getInstancia().buscarPersona("37349382");
+		ControladorUnidadFuncional.getInstancia().agregarInquilino(inquilino_2, "1234");
+
+		// Agrego Suscriptores
+		ControladorConsorcio.getInstancia().suscribirObservador("0001", dueño_1);
+		ControladorConsorcio.getInstancia().suscribirObservador("0001",inquilino_2);
+
+        // Quito Suscriptores
+        ControladorConsorcio.getInstancia().eliminarObservador("0001",inquilino_3);
 
 		// Generar gastos del consorcio.
 		// Gasto normal
@@ -103,7 +106,7 @@ public class Test {
 
 	    // Agregar estrategia de pago al consorcio.
 		AbstractEstrategiaPago estrategiaPago = new PagoFuturaReserva();
-
+ 
 		// Generar expensas.
 		ControladorConsorcio.getInstancia().generarExpensas("0001", "fgirardi", estrategiaPago);
 
@@ -112,12 +115,13 @@ public class Test {
 
 		// TO DO
 
-		// ver como meter el gasto automatico en gasto, capaz no hace falta el idgasto
+		// Pasar la estrategia de envio
+		// El consorcio no deberia tener adentro los array de gastos, personas, unidades funcionales, empleados?
+		// gasto recurrente no carga porque ahora esta vacio el array (porque los gastos estan en el consorcio)
+		// agregar criterio elegido en factura
 		// print de "Se generó una factura de" se hace dos veces
-		// Meter los gastos dentro del consorcio
 		// Verificar pago de Facturas/Expensas
-		// Agregar adapter luego del strategy y System.out.print debe salir de ahi
-		// Agregar suscripcion y eliminacion de observadores para notificacion
+		// Probar los otros criterios de pago
 
 	}
 

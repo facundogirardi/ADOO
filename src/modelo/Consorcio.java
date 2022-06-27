@@ -3,7 +3,9 @@ package modelo;
 import java.util.ArrayList;
 
 import controlador.ControladorUnidadFuncional;
+import observers.IObserver;
 import strategies.IEstrategiaEnvio;
+import strategies.Notificacion;
 import strategies.AbstractEstrategiaPago;
 
 public class Consorcio {
@@ -17,17 +19,17 @@ public class Consorcio {
     private ArrayList<GastoNormal> gastos;
     private ArrayList<GastoRecurrente> gastosRecurrentes;
     private Double saldoActual;
-    // private Operador operador;
+    private ArrayList<IObserver> observadores;
 
     // Constructor
-    public Consorcio(String idConsorcio, String nombreConsorcio, IEstrategiaEnvio estrategiaEnvio) {
+    public Consorcio(String idConsorcio, String nombreConsorcio) {
         this.idConsorcio = idConsorcio;
         this.nombreConsorcio = nombreConsorcio;
-        this.estrategiaEnvio = estrategiaEnvio;
         this.gastos = new ArrayList<GastoNormal>();
         this.unidadesFuncionales = new ArrayList<UnidadFuncional>();
         this.gastosRecurrentes = new ArrayList<GastoRecurrente>();
         this.unidadesFuncionales = new ArrayList<UnidadFuncional>();
+        observadores = new ArrayList<IObserver>();
     }
 
     public String getNombreConsorcio() {
@@ -63,9 +65,14 @@ public class Consorcio {
         this.cambioEstrategiaPago(estrategia);
         Double total = this.estrategiaPago.calculoDeGastos(gastos);
         this.estrategiaPago.divisionExpensas(total, unidadesFuncionales, idUsuario);
-        // this.estrategiaEnvio.envioNotificacion();
+
+        for (int i = 0; i < observadores.size(); i++) {
+            Notificacion notificacion = new Notificacion((Persona) observadores.get(i));
+            this.estrategiaEnvio.envioNotificacion(notificacion);
+        }
+
     }
- 
+
     public void cambioEstrategiaPago(AbstractEstrategiaPago nuevaEstrategia) {
         System.out.println("Estableciendo estrategia de pago");
         this.estrategiaPago = nuevaEstrategia;
@@ -80,7 +87,8 @@ public class Consorcio {
     }
 
     public void pagarExpensa(String idUnidadFuncional, String mes) {
-        UnidadFuncional unidadFuncional = ControladorUnidadFuncional.getInstancia().buscarUnidadFuncional(idUnidadFuncional);
+        UnidadFuncional unidadFuncional = ControladorUnidadFuncional.getInstancia()
+                .buscarUnidadFuncional(idUnidadFuncional);
         unidadFuncional.pagarExpensa(mes);
     }
 
@@ -94,6 +102,14 @@ public class Consorcio {
 
     public void añadirUnidadFuncionalConsorcio(UnidadFuncional unidadFuncional) {
         unidadesFuncionales.add(unidadFuncional);
+    }
+
+    public void suscribirObservador(IObserver observador) {
+        observadores.add(observador);
+    }
+
+    public void eliminarObservador(IObserver observador) {
+        observadores.remove(observador);
     }
 
 }

@@ -1,8 +1,9 @@
 package modelo;
 
 import enums.TipoNotificacion;
+import observers.IObserver;
 
-public class Persona {
+public class Persona implements IObserver {
 
     private String dni;
     private String nombre;
@@ -51,5 +52,10 @@ public class Persona {
 			return false;
 		}
 	}
+
+    @Override
+    public void notificar() {
+        
+    }
 
 }

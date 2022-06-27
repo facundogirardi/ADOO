@@ -1,5 +1,7 @@
 package adapters;
 
+import strategies.Notificacion;
+
 public interface IAdapterEmail {
-    void envioNotificacion();
+    void envioNotificacion(Notificacion notificacion);
 }
