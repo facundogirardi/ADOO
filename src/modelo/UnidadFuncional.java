@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 
 import enums.TipoUnidadFuncional;
+import states.FacturaImpaga;
 import states.FacturaPaga;
 
 public class UnidadFuncional {
@@ -79,13 +80,22 @@ public class UnidadFuncional {
         inquilinos.add(persona);
     }
 
+    public Double calcularDeuda() {
+        Double deuda = 0.0;
+        for (Factura expensa : expensas) {
+            if (expensa.getEstado() instanceof FacturaImpaga) {
+                deuda = deuda + expensa.getTotal();
+            }
+        }
+        return deuda;
+    }
+
     public void pagarExpensa(String mes) {
         for (Factura expensa : expensas) {
             if (expensa.getMes() == mes) {
                 expensa.cambiarEstado(new FacturaPaga());
             }
         }
-
     }
 
 }

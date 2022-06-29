@@ -23,10 +23,6 @@ public class Factura {
         this.estado = new FacturaImpaga();
     }
 
-    public void verificarPago() {
-        this.estado.verificarPago(this);
-    }
-
     public void cambiarEstado(IEstadoFactura nuevoEstado) {
         this.estado = nuevoEstado;
     }
@@ -49,6 +45,10 @@ public class Factura {
 
     public LocalDate getFechaGeneracion() {
         return this.fechaGeneracion;
+    }
+
+    public IEstadoFactura getEstado() {
+        return estado;
     }
 
 }

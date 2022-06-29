@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import modelo.BotRecurrente;
+import modelo.Consorcio;
 import modelo.Gasto;
 import modelo.GastoNormal;
 import modelo.GastoRecurrente;
@@ -43,7 +44,7 @@ public class ControladorGasto {
 
     }
 
-    public void generarGastoRecurrenteBot() {
+    public void generarGastoRecurrenteBot(String idConsorcio) {
         ArrayList<GastoRecurrente> gastosRecurrentes = new ArrayList<GastoRecurrente>();
         for (Gasto gasto : gastos) {
             if (gasto instanceof GastoRecurrente) {
@@ -51,7 +52,9 @@ public class ControladorGasto {
             }
         }
         BotRecurrente botRecurrente = new BotRecurrente(gastosRecurrentes);
-        gastos.addAll(botRecurrente.getGastosRecurrentesFromBot());
+        Consorcio consorcio = ControladorConsorcio.getInstancia().buscarConsorcio(idConsorcio);
+        ArrayList<GastoNormal> gastos = botRecurrente.getGastosRecurrentesFromBot();
+        consorcio.añadirGastosNormalesConsorcio(gastos);
     }
 
     public static ArrayList<Gasto> getGastos() {

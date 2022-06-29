@@ -2,11 +2,18 @@ package modelo;
 
 import java.util.ArrayList;
 
+import adapters.AdapterEmail;
+import adapters.AdapterSMS;
+import adapters.AdapterWhatsapp;
 import controlador.ControladorUnidadFuncional;
+import enums.TipoNotificacion;
 import observers.IObserver;
 import strategies.IEstrategiaEnvio;
 import strategies.Notificacion;
 import strategies.AbstractEstrategiaPago;
+import strategies.EnvioEmail;
+import strategies.EnvioSMS;
+import strategies.EnvioWhatsapp;
 
 public class Consorcio {
 
@@ -67,7 +74,19 @@ public class Consorcio {
         this.estrategiaPago.divisionExpensas(total, unidadesFuncionales, idUsuario);
 
         for (int i = 0; i < observadores.size(); i++) {
-            Notificacion notificacion = new Notificacion((Persona) observadores.get(i));
+            Persona persona = (Persona) observadores.get(i);
+            Notificacion notificacion = new Notificacion(persona);
+
+            IEstrategiaEnvio nuevaEstrategia = new EnvioEmail(new AdapterEmail());
+
+            if (persona.geTipoNotificacion() == TipoNotificacion.WHATSAPP) {
+               nuevaEstrategia = new EnvioWhatsapp(new AdapterWhatsapp());
+            } 
+            if (persona.geTipoNotificacion() == TipoNotificacion.SMS) {
+                nuevaEstrategia = new EnvioSMS(new AdapterSMS());
+            } 
+
+            this.cambioEstrategiaEnvio(nuevaEstrategia);
             this.estrategiaEnvio.envioNotificacion(notificacion);
         }
 
@@ -94,6 +113,10 @@ public class Consorcio {
 
     public void añadirGastoNormalConsorcio(GastoNormal gastoNormal) {
         gastos.add(gastoNormal);
+    }
+
+    public void añadirGastosNormalesConsorcio(ArrayList<GastoNormal> gastosNormales) {
+        gastos.addAll(gastosNormales);
     }
 
     public void añadirGastoRecurrenteConsorcio(GastoRecurrente gastoRecurrente) {

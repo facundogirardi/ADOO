@@ -1,5 +1,6 @@
 package test;
 
+import modelo.Consorcio;
 import modelo.GastoNormal;
 import modelo.GastoRecurrente;
 import modelo.Persona;
@@ -16,6 +17,7 @@ import enums.TipoNotificacion;
 import enums.TipoUnidadFuncional;
 import adapters.AdapterEmail;
 import adapters.AdapterWhatsapp;
+import adapters.IAdapterWhatsapp;
 import controlador.ControladorConsorcio;
 import controlador.ControladorGasto;
 import controlador.ControladorOperador;
@@ -104,10 +106,10 @@ public class Test {
 		ControladorConsorcio.getInstancia().añadirGastoRecurrenteConsorcio("0001", gastoRecurrente_1);
 
 		// Genero gastos recurrentes
-		ControladorGasto.getInstancia().generarGastoRecurrenteBot();
+		ControladorGasto.getInstancia().generarGastoRecurrenteBot("0001");
 
 	    // Agregar estrategia de pago al consorcio.
-		AbstractEstrategiaPago estrategiaPago = new PagoFuturaReserva();
+		AbstractEstrategiaPago estrategiaPago = new PagoFondoReserva();
  
 		// Generar expensas.
 		ControladorConsorcio.getInstancia().generarExpensas("0001", "fgirardi", estrategiaPago);
@@ -117,10 +119,6 @@ public class Test {
 
 		// TO DO
 
-		// Pasar la estrategia de envio
-		// El consorcio no deberia tener adentro los array de gastos, personas, unidades funcionales, empleados?
-		// gasto recurrente no carga porque ahora esta vacio el array (porque los gastos estan en el consorcio)
-		// meter el saldo del consorcio para el pagofondoReserva
 		// Hacer Verificar pago de Facturas/Expensas 
 
 	}
