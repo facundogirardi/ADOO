@@ -1,6 +1,6 @@
 package modelo;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 
 import states.FacturaImpaga;
 import states.IEstadoFactura;
@@ -10,11 +10,11 @@ public class Factura {
     private Double total;
     private IEstadoFactura estado;
     private String mes; 
-    private LocalDate fechaGeneracion;
+    private SimpleDateFormat fechaGeneracion;
     private String usuarioGenerador;
     private String criterioElegido;
     
-    public Factura(Double total, String mes, String usuarioGenerador, LocalDate fechaGeneracion, String criterioElegido) {
+    public Factura(Double total, String mes, String usuarioGenerador, SimpleDateFormat fechaGeneracion, String criterioElegido) {
         this.total = total;
         this.mes = mes;
         this.usuarioGenerador = usuarioGenerador;
@@ -43,7 +43,7 @@ public class Factura {
         return this.usuarioGenerador;
     }
 
-    public LocalDate getFechaGeneracion() {
+    public SimpleDateFormat getFechaGeneracion() {
         return this.fechaGeneracion;
     }
 

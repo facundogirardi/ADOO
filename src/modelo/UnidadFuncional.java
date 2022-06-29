@@ -60,8 +60,8 @@ public class UnidadFuncional {
         return propietarios;
     }
 
-    public void getExpensas() {
-        System.out.println(this.expensas);
+    public ArrayList<Factura> getExpensas() {
+        return expensas;
     }
 
     public boolean sosLaUnidadFuncional(String codigoBuscado) {
@@ -80,7 +80,7 @@ public class UnidadFuncional {
         inquilinos.add(persona);
     }
 
-    public Double calcularDeuda() {
+    public Double calcularDeuda(ArrayList<UnidadFuncional> unidadesFuncionales) {
         Double deuda = 0.0;
         for (Factura expensa : expensas) {
             if (expensa.getEstado() instanceof FacturaImpaga) {
@@ -90,12 +90,17 @@ public class UnidadFuncional {
         return deuda;
     }
 
-    public void pagarExpensa(String mes) {
+    public void pagarExpensa(ArrayList<Factura> arrayList, String mes) {
         for (Factura expensa : expensas) {
-            if (expensa.getMes() == mes) {
+            if (expensa.getMes() == mes && expensa.getEstado() instanceof FacturaImpaga) {
                 expensa.cambiarEstado(new FacturaPaga());
+                System.out.println("Expensa paga exitosamente");
+            } else if (expensa.getEstado() instanceof FacturaPaga) {
+                System.out.println("La expensa ya se encuentra paga");
+            } else {
+                System.out.println("Expensa no encontrada");
             }
         }
-    }
 
+    }
 }

@@ -25,7 +25,6 @@ public class Consorcio {
     private AbstractEstrategiaPago estrategiaPago;
     private ArrayList<GastoNormal> gastos;
     private ArrayList<GastoRecurrente> gastosRecurrentes;
-    private Double saldoActual;
     private ArrayList<IObserver> observadores;
 
     // Constructor
@@ -64,7 +63,6 @@ public class Consorcio {
     }
 
     public void cambioEstrategiaEnvio(IEstrategiaEnvio nuevaEstrategia) {
-        System.out.println("Cambiando de estrategia de envío");
         this.estrategiaEnvio = nuevaEstrategia;
     }
 
@@ -80,11 +78,11 @@ public class Consorcio {
             IEstrategiaEnvio nuevaEstrategia = new EnvioEmail(new AdapterEmail());
 
             if (persona.geTipoNotificacion() == TipoNotificacion.WHATSAPP) {
-               nuevaEstrategia = new EnvioWhatsapp(new AdapterWhatsapp());
-            } 
+                nuevaEstrategia = new EnvioWhatsapp(new AdapterWhatsapp());
+            }
             if (persona.geTipoNotificacion() == TipoNotificacion.SMS) {
                 nuevaEstrategia = new EnvioSMS(new AdapterSMS());
-            } 
+            }
 
             this.cambioEstrategiaEnvio(nuevaEstrategia);
             this.estrategiaEnvio.envioNotificacion(notificacion);
@@ -108,7 +106,8 @@ public class Consorcio {
     public void pagarExpensa(String idUnidadFuncional, String mes) {
         UnidadFuncional unidadFuncional = ControladorUnidadFuncional.getInstancia()
                 .buscarUnidadFuncional(idUnidadFuncional);
-        unidadFuncional.pagarExpensa(mes);
+        unidadFuncional.pagarExpensa(unidadFuncional.getExpensas(), mes);
+
     }
 
     public void añadirGastoNormalConsorcio(GastoNormal gastoNormal) {

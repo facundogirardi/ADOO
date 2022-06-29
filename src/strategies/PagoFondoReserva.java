@@ -1,4 +1,5 @@
 package strategies;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -8,8 +9,8 @@ import modelo.UnidadFuncional;
 
 public class PagoFondoReserva extends AbstractEstrategiaPago {
 
-	LocalDate fechaGeneracion = LocalDate.now();
-	Month mes = fechaGeneracion.getMonth();
+    SimpleDateFormat fechaGeneracion = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    Month mes = LocalDate.now().getMonth();
     String criterioElegido = "PagoFondoReserva";
 
     @Override
@@ -17,11 +18,11 @@ public class PagoFondoReserva extends AbstractEstrategiaPago {
         System.out.println("Estrategia pago establecida : Fondo Reserva");
         for (UnidadFuncional unidadFuncional : unidadesFuncionales) {
             Float saldoObtenido = super.obtencionSaldo("CBU", "token", LocalDate.now());
-            Double montoAPagar = (gastoTotal * unidadFuncional.getPorcentajeDePago()) / 100 - saldoObtenido;
+            Double montoAPagar = ((gastoTotal * unidadFuncional.getPorcentajeDePago()) / 100) - saldoObtenido;
             Factura nuevaExpensa = new Factura(montoAPagar,  mes.toString(), usuarioGenerador, fechaGeneracion, criterioElegido);
             unidadFuncional.agregarExpensa(nuevaExpensa);
             super.loggearExpensa(nuevaExpensa, unidadFuncional.getCodigo());
         };
     }
-
+    
 }

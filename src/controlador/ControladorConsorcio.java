@@ -3,18 +3,15 @@ package controlador;
 import java.util.ArrayList;
 
 import modelo.Consorcio;
-import modelo.Gasto;
 import modelo.GastoNormal;
 import modelo.GastoRecurrente;
 import modelo.Persona;
 import modelo.UnidadFuncional;
 import strategies.AbstractEstrategiaPago;
-import strategies.IEstrategiaEnvio;
 
 public class ControladorConsorcio {
 
     private ArrayList<Consorcio> consorcios;
-    private ArrayList<Gasto> gastos;
     private static ControladorConsorcio instancia;
 
     public ControladorConsorcio() {
@@ -89,7 +86,6 @@ public class ControladorConsorcio {
         Consorcio consorcio = this.buscarConsorcio(idConsorcio);
         if (consorcio != null && persona != null) {
             consorcio.suscribirObservador(persona);
-
         }
     }
 

@@ -55,7 +55,6 @@ public class Persona implements IObserver {
 
     @Override
     public void notificar() {
-        
     }
 
 }

@@ -1,5 +1,6 @@
 package strategies;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -9,8 +10,8 @@ import modelo.UnidadFuncional;
 
 public class PagoFuturaReserva extends AbstractEstrategiaPago {
 
-    LocalDate fechaGeneracion = LocalDate.now();
-    Month mes = fechaGeneracion.getMonth();
+    SimpleDateFormat fechaGeneracion = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    Month mes = LocalDate.now().getMonth();
     String criterioElegido = "PagoFuturaReserva";
 
     @Override

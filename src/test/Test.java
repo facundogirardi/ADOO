@@ -1,23 +1,14 @@
 package test;
 
-import modelo.Consorcio;
 import modelo.GastoNormal;
 import modelo.GastoRecurrente;
 import modelo.Persona;
 import modelo.UnidadFuncional;
 import strategies.AbstractEstrategiaPago;
-import strategies.EnvioEmail;
-import strategies.EnvioWhatsapp;
-import strategies.IEstrategiaEnvio;
-import strategies.PagoCompleto;
-import strategies.PagoFondoReserva;
 import strategies.PagoFuturaReserva;
 import enums.TipoExpensa;
 import enums.TipoNotificacion;
 import enums.TipoUnidadFuncional;
-import adapters.AdapterEmail;
-import adapters.AdapterWhatsapp;
-import adapters.IAdapterWhatsapp;
 import controlador.ControladorConsorcio;
 import controlador.ControladorGasto;
 import controlador.ControladorOperador;
@@ -29,8 +20,8 @@ public class Test {
 	public static void main(String[] args) {
 
 		// Crear consorcio.
-		ControladorConsorcio.getInstancia().crearNuevoConsorcio("0001", "Consorcio");
-		System.out.println("Creo Consorcio : " + ControladorConsorcio.getInstancia().getConsorcio("0001").getIdConsorcio() + " - ");
+		ControladorConsorcio.getInstancia().crearNuevoConsorcio("0001", "Consorcio ADO Viernes Noche");
+		System.out.println("Creo Consorcio : " + ControladorConsorcio.getInstancia().getConsorcio("0001").getNombreConsorcio());
 
 		// Crear y loguear operador.
 		ControladorOperador.getInstancia().crearNuevoOperador("Facundo", "Girardi", "123456789", "facundo.girardi@gmail.com", "fgirardi", "1234");
@@ -43,9 +34,9 @@ public class Test {
 		// Crear personas
 		ControladorPersona.getInstancia().crearNuevaPersona("37349380", "Matias", "Stricagnoli", "Matias@gmail.com", "111111111", TipoNotificacion.WHATSAPP);
 		System.out.println("Creo Persona : " + ControladorPersona.getInstancia().getPersona("37349380").getNombre());
-		ControladorPersona.getInstancia().crearNuevaPersona("37349381", "Marcela", "Objetos", "Marcela@gmail.com", "111111111", TipoNotificacion.EMAIL);
+		ControladorPersona.getInstancia().crearNuevaPersona("37349381", "Diego", "Blanco", "Marcela@gmail.com", "111111111", TipoNotificacion.EMAIL);
 		System.out.println("Creo Persona : " + ControladorPersona.getInstancia().getPersona("37349381").getNombre());
-		ControladorPersona.getInstancia().crearNuevaPersona("37349382", "Lautario", "Singleton", "Marcela@gmail.com", "111111111", TipoNotificacion.SMS);
+		ControladorPersona.getInstancia().crearNuevaPersona("37349382", "Lautario", "Mitelman", "Marcela@gmail.com", "111111111", TipoNotificacion.SMS);
 		System.out.println("Creo Persona : " + ControladorPersona.getInstancia().getPersona("37349381").getNombre());
 
 		// Crear unidad funcional.
@@ -109,7 +100,7 @@ public class Test {
 		ControladorGasto.getInstancia().generarGastoRecurrenteBot("0001");
 
 	    // Agregar estrategia de pago al consorcio.
-		AbstractEstrategiaPago estrategiaPago = new PagoFondoReserva();
+		AbstractEstrategiaPago estrategiaPago = new PagoFuturaReserva();
  
 		// Generar expensas.
 		ControladorConsorcio.getInstancia().generarExpensas("0001", "fgirardi", estrategiaPago);
@@ -118,8 +109,14 @@ public class Test {
 		ControladorConsorcio.getInstancia().pagarExpensa("0001", "1234" , "JUNE");
 
 		// TO DO
-
-		// Hacer Verificar pago de Facturas/Expensas 
+		// Bot recurrente no da de alta los gastos recurrentes GastoRecurrente.getMesDesde()  trae 0 no accede a la herencia
+		// Ver deuda anterior al momento de generar la factura, podriamos sumarle un sumarle un interes
+		// Ver el pagoFondo es el total dividido. Es raro porque el total da negativo (Esta bien!, pero capaz la cuenta es distinta)
+		// pagoFondo esta bien que pasemos los parametros directamente?
+		// Controlador desde controlador para el bot recuerrente, se puede mejorar?
+		// Revisar validaciones
+		// Revisar diagrama que esten todas los metodos con sus parametros
+		// Agregar al diagrama de clases la cardinalidad
 
 	}
 
