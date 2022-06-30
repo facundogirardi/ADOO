@@ -109,14 +109,11 @@ public class Test {
 		ControladorConsorcio.getInstancia().pagarExpensa("0001", "1234" , "JUNE");
 
 		// TO DO
-		// Bot recurrente no da de alta los gastos recurrentes GastoRecurrente.getMesDesde()  trae 0 no accede a la herencia
+		// Bot recurrente no da de alta los gastos recurrentes GastoRecurrente.getMesDesde() porque el array se transformo en GastoNormal
 		// Ver deuda anterior al momento de generar la factura, podriamos sumarle un sumarle un interes
-		// Ver el pagoFondo es el total dividido. Es raro porque el total da negativo (Esta bien!, pero capaz la cuenta es distinta)
-		// pagoFondo esta bien que pasemos los parametros directamente?
+		// pagoFondo esta bien que pasemos los parametros directamente? Ponernos de acuerdo por si nos pregunta
 		// Controlador desde controlador para el bot recuerrente, se puede mejorar?
-		// Revisar validaciones
-		// Revisar diagrama que esten todas los metodos con sus parametros
-		// Agregar al diagrama de clases la cardinalidad
+		// Revisar que no estemos rompiendo algun SOLID
 
 	}
 
