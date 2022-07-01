@@ -24,9 +24,7 @@ public class PagoCompleto extends AbstractEstrategiaPago {
             Factura nuevaExpensa = new Factura(montoAPagar, mes.toString(), usuarioGenerador, fechaGeneracion, criterioElegido);
             unidadFuncional.agregarExpensa(nuevaExpensa);
             super.loggearExpensa(nuevaExpensa, unidadFuncional.getCodigo());
-        }
-        ;
-
+        };
     }
 
 }

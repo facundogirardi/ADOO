@@ -8,6 +8,7 @@ import adapters.AdapterWhatsapp;
 import controlador.ControladorUnidadFuncional;
 import enums.TipoNotificacion;
 import observers.IObserver;
+import states.FacturaImpaga;
 import strategies.IEstrategiaEnvio;
 import strategies.Notificacion;
 import strategies.AbstractEstrategiaPago;
@@ -104,10 +105,16 @@ public class Consorcio {
     }
 
     public void pagarExpensa(String idUnidadFuncional, String mes) {
-        UnidadFuncional unidadFuncional = ControladorUnidadFuncional.getInstancia()
-                .buscarUnidadFuncional(idUnidadFuncional);
-        unidadFuncional.pagarExpensa(unidadFuncional.getExpensas(), mes);
-
+        UnidadFuncional unidadFuncional = ControladorUnidadFuncional.getInstancia().buscarUnidadFuncional(idUnidadFuncional);
+        ArrayList<Factura> facturas = unidadFuncional.getExpensas();
+        Double TotalDeuda = 0.00;
+        for (Factura factura : facturas) {
+            if (factura.getEstado() instanceof FacturaImpaga) {
+                 TotalDeuda = factura.getTotal() + TotalDeuda;
+            }
+        }
+         System.out.println("Tiene facturas impagas, usted debe : " + TotalDeuda);
+         unidadFuncional.pagarExpensa(unidadFuncional.getExpensas(), mes);
     }
 
     public void añadirGastoNormalConsorcio(GastoNormal gastoNormal) {

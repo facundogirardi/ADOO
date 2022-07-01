@@ -4,18 +4,20 @@ import enums.TipoExpensa;
 
 public class GastoRecurrente extends Gasto {
 
-    private static int mesDesde;
-    private static int mesHasta;
+    private int mesDesde;
+    private int mesHasta;
             
     public GastoRecurrente(String idGasto, Float monto, TipoExpensa tipoExpensa, String descripcion, int mesDesde, int mesHasta) {
         super(idGasto, monto, tipoExpensa, descripcion);
+        this.mesDesde = mesDesde;
+        this.mesHasta = mesHasta;
     }
     
-    public static int getMesDesde() {
+    public int getMesDesde() {
         return mesDesde;
     };
 
-    public static int getMesHasta() {
+    public int getMesHasta() {
         return mesHasta;
     };
 
