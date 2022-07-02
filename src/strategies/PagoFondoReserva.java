@@ -17,9 +17,11 @@ public class PagoFondoReserva extends AbstractEstrategiaPago {
     public void divisionExpensas(Double gastoTotal, ArrayList<UnidadFuncional> unidadesFuncionales, String usuarioGenerador) {
         System.out.println("Estrategia pago establecida : Fondo Reserva");
         for (UnidadFuncional unidadFuncional : unidadesFuncionales) {
-            Float saldoObtenido = super.obtencionSaldo("CBU", "token", LocalDate.now());
-            Double montoAPagar = ((gastoTotal * unidadFuncional.getPorcentajeDePago()) / 100) - saldoObtenido;
-            Factura nuevaExpensa = new Factura(montoAPagar,  mes.toString(), usuarioGenerador, fechaGeneracion, criterioElegido);
+            Float saldoTotalConsorcio = super.obtencionSaldo("CBU", "token", LocalDate.now());
+            Double montoAPagar = ((gastoTotal * unidadFuncional.getPorcentajeDePago()) / 100) - ((saldoTotalConsorcio * unidadFuncional.getPorcentajeDePago()) / 100);
+            System.out.println("El consorcio queda con un saldo de: " + (saldoTotalConsorcio - ((saldoTotalConsorcio * unidadFuncional.getPorcentajeDePago()) / 100)));
+            LocalDate fechaVencimiento = LocalDate.now().plusDays(10);
+            Factura nuevaExpensa = new Factura(montoAPagar,  mes.toString(), usuarioGenerador, fechaGeneracion, criterioElegido, fechaVencimiento);
             unidadFuncional.agregarExpensa(nuevaExpensa);
             super.loggearExpensa(nuevaExpensa, unidadFuncional.getCodigo());
         };

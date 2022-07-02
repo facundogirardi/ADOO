@@ -51,9 +51,9 @@ public class ControladorConsorcio {
         return null;
     }
 
-    public void generarExpensas(String idConsorcio, String idUsuario, AbstractEstrategiaPago estrategia) {
+    public void generarExpensas(String idConsorcio, String idUsuario) {
         Consorcio consorcio = buscarConsorcio(idConsorcio);
-        consorcio.generarExpensa(estrategia, idUsuario);
+        consorcio.generarExpensa(idUsuario);
     }
 
     public void pagarExpensa(String idConsorcio, String idUnidadFuncional, String mes) {

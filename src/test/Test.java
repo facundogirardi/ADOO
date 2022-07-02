@@ -1,10 +1,12 @@
 package test;
 
+import modelo.Consorcio;
 import modelo.GastoNormal;
 import modelo.GastoRecurrente;
 import modelo.Persona;
 import modelo.UnidadFuncional;
 import strategies.AbstractEstrategiaPago;
+import strategies.PagoCompleto;
 import strategies.PagoFuturaReserva;
 import enums.TipoExpensa;
 import enums.TipoNotificacion;
@@ -100,13 +102,14 @@ public class Test {
 		ControladorGasto.getInstancia().generarGastoRecurrenteBot("0001");
 
 	    // Agregar estrategia de pago al consorcio.
-		AbstractEstrategiaPago estrategiaPago = new PagoFuturaReserva();
- 
+		Consorcio consorcio = ControladorConsorcio.getInstancia().buscarConsorcio("0001");
+		consorcio.cambioEstrategiaPago(new PagoCompleto());
+
 		// Generar expensas.
-		ControladorConsorcio.getInstancia().generarExpensas("0001", "fgirardi", estrategiaPago);
+		ControladorConsorcio.getInstancia().generarExpensas("0001", "fgirardi");
 
 		// Cliente paga expensa.
-		ControladorConsorcio.getInstancia().pagarExpensa("0001", "1234" , "JUNE");
+		ControladorConsorcio.getInstancia().pagarExpensa("0001", "1234" , "JULY");
 
 	}
 

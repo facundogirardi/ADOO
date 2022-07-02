@@ -7,10 +7,10 @@ import adapters.AdapterSMS;
 import adapters.AdapterWhatsapp;
 import controlador.ControladorUnidadFuncional;
 import enums.TipoNotificacion;
-import observers.IObserver;
 import states.FacturaImpaga;
 import strategies.IEstrategiaEnvio;
 import strategies.Notificacion;
+import strategies.Notificador;
 import strategies.AbstractEstrategiaPago;
 import strategies.EnvioEmail;
 import strategies.EnvioSMS;
@@ -21,12 +21,10 @@ public class Consorcio {
     private String nombreConsorcio;
     private String idConsorcio;
     private ArrayList<UnidadFuncional> unidadesFuncionales;
-    // adaptercuentaBancaria: IAdapterSaldo
-    private IEstrategiaEnvio estrategiaEnvio;
     private AbstractEstrategiaPago estrategiaPago;
     private ArrayList<GastoNormal> gastos;
     private ArrayList<GastoRecurrente> gastosRecurrentes;
-    private ArrayList<IObserver> observadores;
+    private ArrayList<Persona> observadores;
 
     // Constructor
     public Consorcio(String idConsorcio, String nombreConsorcio) {
@@ -36,7 +34,7 @@ public class Consorcio {
         this.unidadesFuncionales = new ArrayList<UnidadFuncional>();
         this.gastosRecurrentes = new ArrayList<GastoRecurrente>();
         this.unidadesFuncionales = new ArrayList<UnidadFuncional>();
-        observadores = new ArrayList<IObserver>();
+        observadores = new ArrayList<Persona>();
     }
 
     public String getNombreConsorcio() {
@@ -59,21 +57,13 @@ public class Consorcio {
         this.idConsorcio = idConsorcio;
     }
 
-    public IEstrategiaEnvio getEstrategiaEnvio() {
-        return this.estrategiaEnvio;
-    }
-
-    public void cambioEstrategiaEnvio(IEstrategiaEnvio nuevaEstrategia) {
-        this.estrategiaEnvio = nuevaEstrategia;
-    }
-
-    public void generarExpensa(AbstractEstrategiaPago estrategia, String idUsuario) {
-        this.cambioEstrategiaPago(estrategia);
+    public void generarExpensa(String idUsuario) {
         Double total = this.estrategiaPago.calculoDeGastos(gastos);
         this.estrategiaPago.divisionExpensas(total, unidadesFuncionales, idUsuario);
 
         for (int i = 0; i < observadores.size(); i++) {
             Persona persona = (Persona) observadores.get(i);
+            Notificador notificador = new Notificador();
             Notificacion notificacion = new Notificacion(persona);
 
             IEstrategiaEnvio nuevaEstrategia = new EnvioEmail(new AdapterEmail());
@@ -85,10 +75,9 @@ public class Consorcio {
                 nuevaEstrategia = new EnvioSMS(new AdapterSMS());
             }
 
-            this.cambioEstrategiaEnvio(nuevaEstrategia);
-            this.estrategiaEnvio.envioNotificacion(notificacion);
+            notificador.setEstrategia(nuevaEstrategia);
+            notificador.enviar(notificacion);
         }
-
     }
 
     public void cambioEstrategiaPago(AbstractEstrategiaPago nuevaEstrategia) {
@@ -114,7 +103,7 @@ public class Consorcio {
             }
         }
          System.out.println("Tiene facturas impagas, usted debe : " + TotalDeuda);
-         unidadFuncional.pagarExpensa(unidadFuncional.getExpensas(), mes);
+         unidadFuncional.pagarExpensa(mes);
     }
 
     public void añadirGastoNormalConsorcio(GastoNormal gastoNormal) {
@@ -133,11 +122,11 @@ public class Consorcio {
         unidadesFuncionales.add(unidadFuncional);
     }
 
-    public void suscribirObservador(IObserver observador) {
+    public void suscribirObservador(Persona observador) {
         observadores.add(observador);
     }
 
-    public void eliminarObservador(IObserver observador) {
+    public void eliminarObservador(Persona observador) {
         observadores.remove(observador);
     }
 

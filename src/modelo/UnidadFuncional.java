@@ -90,17 +90,12 @@ public class UnidadFuncional {
         return deuda;
     }
 
-    public void pagarExpensa(ArrayList<Factura> arrayList, String mes) {
+    public void pagarExpensa(String mes) {
         for (Factura expensa : expensas) {
-            if (expensa.getMes() == mes && expensa.getEstado() instanceof FacturaImpaga) {
-                expensa.cambiarEstado(new FacturaPaga());
-                System.out.println("Expensa paga exitosamente");
-            } else if (expensa.getEstado() instanceof FacturaPaga) {
-                System.out.println("La expensa ya se encuentra paga");
-            } else {
-                System.out.println("Expensa no encontrada");
+            if (expensa.getMes() == mes) {
+                expensa.pagar();
             }
         }
-
     }
+    
 }

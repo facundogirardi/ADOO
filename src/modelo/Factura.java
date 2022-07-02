@@ -1,29 +1,36 @@
 package modelo;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
+import states.AbstractEstadoFactura;
 import states.FacturaImpaga;
-import states.IEstadoFactura;
 
 public class Factura {
 
     private Double total;
-    private IEstadoFactura estado;
+    private AbstractEstadoFactura estado;
     private String mes; 
     private SimpleDateFormat fechaGeneracion;
     private String usuarioGenerador;
     private String criterioElegido;
+    private LocalDate fechaDeVencimiento;
     
-    public Factura(Double total, String mes, String usuarioGenerador, SimpleDateFormat fechaGeneracion, String criterioElegido) {
+    public Factura(Double total, String mes, String usuarioGenerador, SimpleDateFormat fechaGeneracion, String criterioElegido, LocalDate fechaDeVencimiento) {
         this.total = total;
         this.mes = mes;
         this.usuarioGenerador = usuarioGenerador;
         this.fechaGeneracion = fechaGeneracion;
         this.criterioElegido = criterioElegido;
+        this.fechaDeVencimiento = fechaDeVencimiento;
         this.estado = new FacturaImpaga();
     }
 
-    public void cambiarEstado(IEstadoFactura nuevoEstado) {
+    public void pagar() {
+        this.estado.verificarPago(this);;
+    }
+
+    public void cambiarEstado(AbstractEstadoFactura nuevoEstado) {
         this.estado = nuevoEstado;
     }
 
@@ -39,6 +46,10 @@ public class Factura {
         return this.total;
     }
 
+    public void setTotal(Double nuevoTotal) {
+        this.total = nuevoTotal;
+    }
+
     public String getUsuarioGenerador() {
         return this.usuarioGenerador;
     }
@@ -47,7 +58,11 @@ public class Factura {
         return this.fechaGeneracion;
     }
 
-    public IEstadoFactura getEstado() {
+    public LocalDate getFechaVencimiento() {
+        return this.fechaDeVencimiento;
+    }
+
+    public AbstractEstadoFactura getEstado() {
         return estado;
     }
 

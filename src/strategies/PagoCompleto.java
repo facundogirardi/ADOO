@@ -21,7 +21,8 @@ public class PagoCompleto extends AbstractEstrategiaPago {
 
         for (UnidadFuncional unidadFuncional : unidadesFuncionales) {
             Double montoAPagar = (gastoTotal * unidadFuncional.getPorcentajeDePago()) / 100;
-            Factura nuevaExpensa = new Factura(montoAPagar, mes.toString(), usuarioGenerador, fechaGeneracion, criterioElegido);
+            LocalDate fechaVencimiento = LocalDate.now().plusDays(10);
+            Factura nuevaExpensa = new Factura(montoAPagar, mes.toString(), usuarioGenerador, fechaGeneracion, criterioElegido, fechaVencimiento);
             unidadFuncional.agregarExpensa(nuevaExpensa);
             super.loggearExpensa(nuevaExpensa, unidadFuncional.getCodigo());
         };

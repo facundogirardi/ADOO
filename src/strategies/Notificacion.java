@@ -6,7 +6,6 @@ public class Notificacion {
 	private Persona persona;
 	
 	public Notificacion(Persona persona) {
-		super();
 		this.persona = persona;
 	}
 
