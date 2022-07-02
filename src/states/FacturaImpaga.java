@@ -16,7 +16,7 @@ public class FacturaImpaga extends AbstractEstadoFactura {
             System.out.println(LocalDate.now() );
             Double interesCalculado = contexto.getTotal() + ((contexto.getTotal() * interes)/100);
             contexto.setTotal(contexto.getTotal() + interesCalculado);
-            System.out.println("Factura vencida, total con interes generado : " + interesCalculado);
+            System.out.println("Factura vencida, total con interes generados : $" + interesCalculado);
         }
         contexto.cambiarEstado(new FacturaPaga()); 
         System.out.println("Facura pagada exitosamente");
