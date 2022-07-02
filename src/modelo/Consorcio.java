@@ -102,7 +102,7 @@ public class Consorcio {
                  TotalDeuda = factura.getTotal() + TotalDeuda;
             }
         }
-         System.out.println("Tiene facturas impagas, usted debe : " + TotalDeuda);
+         System.out.println("Tiene facturas impagas por un total de : $" + TotalDeuda);
          unidadFuncional.pagarExpensa(mes);
     }
 

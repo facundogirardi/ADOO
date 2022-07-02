@@ -7,7 +7,6 @@ import modelo.GastoNormal;
 import modelo.GastoRecurrente;
 import modelo.Persona;
 import modelo.UnidadFuncional;
-import strategies.AbstractEstrategiaPago;
 
 public class ControladorConsorcio {
 

@@ -5,8 +5,8 @@ import modelo.GastoNormal;
 import modelo.GastoRecurrente;
 import modelo.Persona;
 import modelo.UnidadFuncional;
-import strategies.AbstractEstrategiaPago;
 import strategies.PagoCompleto;
+import strategies.PagoFondoReserva;
 import strategies.PagoFuturaReserva;
 import enums.TipoExpensa;
 import enums.TipoNotificacion;
@@ -103,7 +103,7 @@ public class Test {
 
 	    // Agregar estrategia de pago al consorcio.
 		Consorcio consorcio = ControladorConsorcio.getInstancia().buscarConsorcio("0001");
-		consorcio.cambioEstrategiaPago(new PagoCompleto());
+		consorcio.cambioEstrategiaPago(new PagoFuturaReserva());
 
 		// Generar expensas.
 		ControladorConsorcio.getInstancia().generarExpensas("0001", "fgirardi");

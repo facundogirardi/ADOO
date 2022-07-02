@@ -13,7 +13,7 @@ public class PagoFuturaReserva extends AbstractEstrategiaPago {
     SimpleDateFormat fechaGeneracion = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
     Month mes = LocalDate.now().getMonth();
     String criterioElegido = "PagoFuturaReserva";
-    Double interes = 10.0;
+    Double interes = 10.00;
 
     @Override
     public void divisionExpensas(Double gastoTotal, ArrayList<UnidadFuncional> unidadesFuncionales, String usuarioGenerador) {

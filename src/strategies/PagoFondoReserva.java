@@ -19,7 +19,7 @@ public class PagoFondoReserva extends AbstractEstrategiaPago {
         for (UnidadFuncional unidadFuncional : unidadesFuncionales) {
             Float saldoTotalConsorcio = super.obtencionSaldo("CBU", "token", LocalDate.now());
             Double montoAPagar = ((gastoTotal * unidadFuncional.getPorcentajeDePago()) / 100) - ((saldoTotalConsorcio * unidadFuncional.getPorcentajeDePago()) / 100);
-            System.out.println("El consorcio queda con un saldo de: " + (saldoTotalConsorcio - ((saldoTotalConsorcio * unidadFuncional.getPorcentajeDePago()) / 100)));
+            System.out.println("Saldo de consorcio actualizado : $" + (saldoTotalConsorcio - ((saldoTotalConsorcio * unidadFuncional.getPorcentajeDePago()) / 100)));
             LocalDate fechaVencimiento = LocalDate.now().plusDays(10);
             Factura nuevaExpensa = new Factura(montoAPagar,  mes.toString(), usuarioGenerador, fechaGeneracion, criterioElegido, fechaVencimiento);
             unidadFuncional.agregarExpensa(nuevaExpensa);
